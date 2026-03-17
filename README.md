@@ -23,7 +23,7 @@ Sistema de gerenciamento de tarefas de montagem de eletrônicos com interface mo
 ```
 src/
 ├── components/
-│   ├── Painel.tsx          # Painel principal com tabela de eventos
+│   ├── Painel.tsx           # Painel principal com tabela de eventos
 │   ├── FormularioEvento.tsx # Formulário para adicionar/editar
 │   ├── Historico.tsx        # Página de histórico
 │   └── *.css                # Estilos dos componentes
