@@ -18,22 +18,6 @@ Sistema de gerenciamento de tarefas de montagem de eletrônicos com interface mo
 - Vite
 - React Router DOM
 
-## Instalação
-
-1. Instale as dependências:
-
-```bash
-npm install
-```
-
-2. Execute o projeto em modo de desenvolvimento:
-
-```bash
-npm run dev
-```
-
-3. Acesse `http://localhost:5173` no navegador
-
 ## Estrutura do Projeto
 
 ```
