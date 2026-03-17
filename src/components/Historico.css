@@ -1,0 +1,280 @@
+.historico {
+  width: 100%;
+}
+
+.historico-header {
+  margin-bottom: 2rem;
+}
+
+.historico-header h2 {
+  color: #e0e0e0;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.historico-stats {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  color: #b0b0b0;
+  font-size: 1rem;
+}
+
+.stat-item strong {
+  color: #5b9bd5;
+  font-size: 1.1rem;
+}
+
+.tabela-container {
+  background: #1a1a1a;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(91, 155, 213, 0.1);
+  overflow: hidden;
+  overflow-x: auto;
+}
+
+.tabela-historico {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 1400px;
+}
+
+.tabela-historico thead {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  color: white;
+  border-bottom: 2px solid rgba(91, 155, 213, 0.3);
+}
+
+.tabela-historico th {
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.tabela-historico tbody tr {
+  border-bottom: 1px solid rgba(91, 155, 213, 0.1);
+  transition: background-color 0.2s;
+  background-color: #1a1a1a;
+}
+
+.tabela-historico tbody tr:hover {
+  background-color: #252525;
+}
+
+.tabela-historico tbody tr.removido {
+  opacity: 0.7;
+  background-color: #2a1a1a;
+}
+
+.tabela-historico tbody tr.removido:hover {
+  background-color: #352525;
+}
+
+.tabela-historico tbody tr.ativo {
+  background-color: #1a2a1a;
+}
+
+.tabela-historico tbody tr.ativo:hover {
+  background-color: #253525;
+}
+
+.tabela-historico tbody tr.concluido {
+  background-color: #1a2a22;
+}
+
+.tabela-historico tbody tr.concluido:hover {
+  background-color: #25352f;
+}
+
+.tabela-historico tbody tr:last-child {
+  border-bottom: none;
+}
+
+.tabela-historico td {
+  padding: 1rem;
+  color: #d0d0d0;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 3rem !important;
+  color: #888;
+  font-style: italic;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.status-badge.ativo {
+  background-color: #5b9bd5;
+  color: white;
+  box-shadow: 0 2px 6px rgba(91, 155, 213, 0.3);
+}
+
+.status-badge.removido {
+  background-color: #d32f2f;
+  color: white;
+  box-shadow: 0 2px 6px rgba(211, 47, 47, 0.3);
+}
+
+.status-badge.concluido {
+  background-color: #2e7d32;
+  color: white;
+  box-shadow: 0 2px 6px rgba(46, 125, 50, 0.3);
+}
+
+.btn-remover-historico {
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  background-color: #d32f2f;
+  color: white;
+  box-shadow: 0 2px 6px rgba(211, 47, 47, 0.3);
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s,
+    background 0.2s;
+  white-space: nowrap;
+}
+
+.btn-remover-historico:hover {
+  background-color: #e53935;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(211, 47, 47, 0.5);
+}
+
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 12, 18, 0.7);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  z-index: 1000;
+}
+
+.popup-modal {
+  width: min(520px, 95vw);
+  background: linear-gradient(135deg, #141a2a 0%, #101521 100%);
+  border: 1px solid rgba(91, 155, 213, 0.25);
+  border-radius: 14px;
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(91, 155, 213, 0.05);
+  overflow: hidden;
+  animation: popupFadeIn 0.18s ease-out;
+}
+
+.popup-header {
+  padding: 1.25rem 1.5rem 0.75rem;
+  border-bottom: 1px solid rgba(91, 155, 213, 0.15);
+}
+
+.popup-header h3 {
+  color: #e9eef7;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.popup-body {
+  padding: 1rem 1.5rem 1.5rem;
+  color: #d7dbe2;
+  line-height: 1.5;
+}
+
+.popup-body strong {
+  color: #ffffff;
+}
+
+.popup-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  padding: 0 1.5rem 1.5rem;
+}
+
+.popup-btn {
+  padding: 0.6rem 1.1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s,
+    background 0.2s,
+    color 0.2s;
+}
+
+.popup-btn-cancelar {
+  background: rgba(91, 155, 213, 0.12);
+  color: #cfe2f5;
+  border: 1px solid rgba(91, 155, 213, 0.35);
+}
+
+.popup-btn-cancelar:hover {
+  background: rgba(91, 155, 213, 0.2);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(91, 155, 213, 0.25);
+}
+
+.popup-btn-remover {
+  background: linear-gradient(135deg, #d32f2f 0%, #e53935 100%);
+  color: white;
+  box-shadow: 0 4px 12px rgba(211, 47, 47, 0.35);
+}
+
+.popup-btn-remover:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(211, 47, 47, 0.5);
+}
+
+@keyframes popupFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 768px) {
+  .historico-stats {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .tabela-historico {
+    min-width: 1200px;
+  }
+
+  .popup-actions {
+    flex-direction: column-reverse;
+  }
+
+  .popup-btn {
+    width: 100%;
+  }
+}
