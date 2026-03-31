@@ -3,20 +3,26 @@
 }
 
 .historico-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin-bottom: 2rem;
 }
 
 .historico-header h2 {
   color: #e0e0e0;
-  font-size: 2rem;
+  font-size: 3rem;
   margin-bottom: 1rem;
   font-weight: 600;
+  text-align: center;
 }
 
 .historico-stats {
   display: flex;
   gap: 2rem;
   flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
 }
 
 .stat-item {

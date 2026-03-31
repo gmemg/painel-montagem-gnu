@@ -244,7 +244,7 @@ const Painel = () => {
     <div className="painel">
       <div className="painel-header">
         <div className="painel-title">
-          <h2>Eventos Ativos</h2>
+          <h2>EVENTOS ATIVOS</h2>
           <span className="painel-stat">
             Eventos ativos: <strong>{eventos.length}</strong>
           </span>
@@ -307,9 +307,7 @@ const Painel = () => {
                   <td>{evento.localEvento}</td>
                   <td>{evento.funcionarioPlantao}</td>
                   <td>{evento.equipamentosNecessarios}</td>
-                  <td className="chamado-cell">
-                    {evento.numeroChamado}
-                  </td>
+                  <td className="chamado-cell">{evento.numeroChamado}</td>
                   <td>
                     <div className="acoes-buttons">
                       <button
