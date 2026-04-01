@@ -1,9 +1,10 @@
-import { Evento } from '../types';
+import { Evento, InventarioItem } from '../types';
 
 // Chaves separadas para isolar domínios de dados e permitir limpeza seletiva.
 const STORAGE_KEY = 'eventos_montagem';
 const HISTORICO_KEY = 'historico_eventos';
 const HISTORICO_REMOVIDOS_COUNT_KEY = 'historico_removidos_count';
+const INVENTARIO_KEY = 'inventario_montagem';
 
 /**
  * Lê os eventos ativos/registrados do `localStorage`.
@@ -89,4 +90,25 @@ export const incrementHistoricoRemovidosCount = (): number => {
   const next = getHistoricoRemovidosCount() + 1;
   localStorage.setItem(HISTORICO_REMOVIDOS_COUNT_KEY, String(next));
   return next;
+};
+
+/**
+ * LÃª o inventÃ¡rio de montagem do `localStorage`.
+ *
+ * @returns Lista de itens do inventÃ¡rio; vazia quando nÃ£o hÃ¡ dados.
+ * @sideEffects Faz leitura do `localStorage`.
+ */
+export const getInventario = (): InventarioItem[] => {
+  const inventario = localStorage.getItem(INVENTARIO_KEY);
+  return inventario ? JSON.parse(inventario) : [];
+};
+
+/**
+ * Persiste o inventÃ¡rio atualizado.
+ *
+ * @param itens Lista completa de itens a ser armazenada.
+ * @sideEffects Sobrescreve o valor armazenado em `localStorage`.
+ */
+export const saveInventario = (itens: InventarioItem[]): void => {
+  localStorage.setItem(INVENTARIO_KEY, JSON.stringify(itens));
 };

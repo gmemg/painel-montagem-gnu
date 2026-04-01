@@ -18,3 +18,17 @@ export interface Evento {
   dataRemocao?: string;
   dataConclusao?: string;
 }
+
+/**
+ * Representa um item do inventÃ¡rio de montagem.
+ */
+export interface InventarioItem {
+  id: string;
+  item: string;
+  modelo: string;
+  quantidade: string;
+  patrimonio: string;
+  localizacao: string;
+  requerente: string;
+  montadoPor: string;
+}

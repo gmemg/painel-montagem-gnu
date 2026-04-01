@@ -1,12 +1,13 @@
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, NavLink } from "react-router-dom";
 import Painel from "./components/Painel";
 import Historico from "./components/Historico";
+import InventarioMontagem from "./components/InventarioMontagem";
 import "./App.css";
 
 /**
  * Componente raiz de layout e rotas.
- * O Router fica aqui para que a navegação e o topo sejam persistentes
- * entre as telas de Painel e Histórico.
+ * O Router fica aqui para que a navegaÃ§Ã£o e o topo sejam persistentes
+ * entre as telas de Painel e HistÃ³rico.
  */
 function App() {
   return (
@@ -23,12 +24,15 @@ function App() {
               <h1 className="nav-title">Painel de Montagem</h1>
             </div>
             <div className="nav-links">
-              <Link to="/" className="nav-link">
+              <NavLink to="/" className="nav-link">
                 Painel
-              </Link>
-              <Link to="/historico" className="nav-link">
-                Histórico
-              </Link>
+              </NavLink>
+              <NavLink to="/historico" className="nav-link">
+                HistÃ³rico
+              </NavLink>
+              <NavLink to="/inventario" className="nav-link">
+                InventÃ¡rio
+              </NavLink>
             </div>
           </div>
         </nav>
@@ -37,6 +41,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Painel />} />
             <Route path="/historico" element={<Historico />} />
+            <Route path="/inventario" element={<InventarioMontagem />} />
           </Routes>
         </main>
       </div>
