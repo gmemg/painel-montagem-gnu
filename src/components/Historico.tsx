@@ -1,4 +1,4 @@
-﻿import { useState, useEffect } from "react";
+﻿import { useCallback, useEffect, useMemo, useState } from "react";
 import { Evento } from "../types";
 import {
   getEventos,
@@ -27,7 +27,7 @@ const Historico = () => {
    * Recarrega e reconcilia fontes de dados do histórico e eventos atuais.
    * A união por `id` evita duplicidade quando um evento está em mais de um lugar.
    */
-  const carregarDados = () => {
+  const carregarDados = useCallback(() => {
     const historico = getHistorico();
     const eventosAtuais = getEventos();
     const eventosRemovidosAtuais = eventosAtuais.filter((e) => e.removido);
@@ -58,27 +58,27 @@ const Historico = () => {
     setMontagensRemovidas(getHistoricoRemovidosCount());
     setTotalMontagens(historico.length);
     setTodosEventos(todosEventosArray);
-  };
+  }, []);
 
   useEffect(() => {
     // Carregamento inicial para evitar render vazio com estado incompleto.
     carregarDados();
-  }, []);
+  }, [carregarDados]);
 
   /**
    * Abre confirmação de remoção definitiva do histórico.
    *
    * @param evento Evento selecionado na tabela.
    */
-  const handleRemoverHistorico = (evento: Evento) => {
+  const handleRemoverHistorico = useCallback((evento: Evento) => {
     setEventoParaRemover(evento);
-  };
+  }, []);
 
   /**
    * Remove definitivamente o evento do histórico e da lista principal.
    * Incrementa o contador de remoções para manter métrica mesmo após exclusão.
    */
-  const handleConfirmarRemocao = () => {
+  const handleConfirmarRemocao = useCallback(() => {
     if (!eventoParaRemover) return;
 
     const historicoAtualizado = getHistorico().filter(
@@ -95,14 +95,14 @@ const Historico = () => {
     setMontagensRemovidas(novoTotalRemovidas);
     carregarDados();
     setEventoParaRemover(null);
-  };
+  }, [carregarDados, eventoParaRemover]);
 
   /**
    * Fecha o modal sem alterações.
    */
-  const handleCancelarRemocao = () => {
+  const handleCancelarRemocao = useCallback(() => {
     setEventoParaRemover(null);
-  };
+  }, []);
 
   useEffect(() => {
     if (!eventoParaRemover) return;
@@ -131,23 +131,33 @@ const Historico = () => {
    * @param evento Evento avaliado.
    * @returns Classe CSS correspondente.
    */
-  const getStatusClass = (evento: Evento) => {
-    if (evento.concluido) return "concluido";
-    if (evento.removido) return "removido";
-    return "ativo";
-  };
+  const eventosView = useMemo(
+    () =>
+      todosEventos.map((evento) => {
+        const statusClass = evento.concluido
+          ? "concluido"
+          : evento.removido
+            ? "removido"
+            : "ativo";
+        const statusLabel = evento.concluido
+          ? "Concluído"
+          : evento.removido
+            ? "Removido"
+            : "Ativo";
 
-  /**
-   * Resolve o rótulo humano do status do evento.
-   *
-   * @param evento Evento avaliado.
-   * @returns Texto do status.
-   */
-  const getStatusLabel = (evento: Evento) => {
-    if (evento.concluido) return "Concluido";
-    if (evento.removido) return "Removido";
-    return "Ativo";
-  };
+        return {
+          ...evento,
+          statusClass,
+          statusLabel,
+          dataHoraFormatada: formatDateTime(evento.dataHora),
+          diaSemanaFormatado: getDiaSemana(evento.dataHora),
+          dataRemocaoFormatada: evento.dataRemocao
+            ? formatDateTime(evento.dataRemocao)
+            : "-",
+        };
+      }),
+    [todosEventos],
+  );
 
   return (
     <div className="historico">
@@ -181,38 +191,34 @@ const Historico = () => {
             </tr>
           </thead>
           <tbody>
-            {todosEventos.length === 0 ? (
+            {eventosView.length === 0 ? (
               <tr>
                 <td colSpan={11} className="empty-state">
-                  Nenhum evento no historico.
+                  Nenhum evento no histórico.
                 </td>
               </tr>
             ) : (
-              todosEventos.map((evento) => (
-                <tr key={evento.id} className={getStatusClass(evento)}>
+              eventosView.map((evento) => (
+                <tr key={evento.id} className={evento.statusClass}>
                   <td>{evento.nomeEvento}</td>
-                  <td>{formatDateTime(evento.dataHora)}</td>
-                  <td>{getDiaSemana(evento.dataHora)}</td>
+                  <td>{evento.dataHoraFormatada}</td>
+                  <td>{evento.diaSemanaFormatado}</td>
                   <td>{evento.localEvento}</td>
                   <td>{evento.adicionadoPor || "-"}</td>
                   <td>{evento.funcionarioPlantao}</td>
                   <td>{evento.equipamentosNecessarios}</td>
                   <td>{evento.numeroChamado}</td>
                   <td>
-                    <span className={`status-badge ${getStatusClass(evento)}`}>
-                      {getStatusLabel(evento)}
+                    <span className={`status-badge ${evento.statusClass}`}>
+                      {evento.statusLabel}
                     </span>
                   </td>
-                  <td>
-                    {evento.dataRemocao
-                      ? formatDateTime(evento.dataRemocao)
-                      : "-"}
-                  </td>
+                  <td>{evento.dataRemocaoFormatada}</td>
                   <td>
                     <button
                       className="btn-remover-historico"
                       onClick={() => handleRemoverHistorico(evento)}
-                      title="Remover do historico"
+                      title="Remover do histórico"
                     >
                       Remover
                     </button>
@@ -268,3 +274,4 @@ const Historico = () => {
 };
 
 export default Historico;
+

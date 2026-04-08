@@ -20,15 +20,19 @@ export interface Evento {
 }
 
 /**
- * Representa um item do inventÃ¡rio de montagem.
+ * Representa um item do inventário de montagem.
  */
-export interface InventarioItem {
+export interface InventarioUnidade {
   id: string;
-  item: string;
   modelo: string;
-  quantidade: string;
   patrimonio: string;
   localizacao: string;
   requerente: string;
   montadoPor: string;
+}
+
+export interface InventarioItem {
+  id: string;
+  item: string;
+  unidades: InventarioUnidade[];
 }

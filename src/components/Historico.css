@@ -5,41 +5,38 @@
 .historico-header {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  justify-content: space-between;
   margin-bottom: 2rem;
 }
 
 .historico-header h2 {
-  color: #e0e0e0;
+  color: var(--text);
   font-size: 3rem;
   margin-bottom: 1rem;
   font-weight: 600;
-  text-align: center;
 }
 
 .historico-stats {
   display: flex;
   gap: 2rem;
   flex-wrap: wrap;
-  justify-content: center;
-  text-align: center;
 }
 
 .stat-item {
-  color: #b0b0b0;
+  color: var(--text-muted);
   font-size: 1rem;
 }
 
 .stat-item strong {
-  color: #5b9bd5;
+  color: var(--blue);
   font-size: 1.1rem;
 }
 
 .tabela-container {
-  background: #1a1a1a;
+  background: var(--surface-2);
   border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-  border: 1px solid rgba(91, 155, 213, 0.1);
+  box-shadow: 0 4px 20px var(--shadow);
+  border: 1px solid var(--border);
   overflow: hidden;
   overflow-x: auto;
 }
@@ -51,9 +48,9 @@
 }
 
 .tabela-historico thead {
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-  color: white;
-  border-bottom: 2px solid rgba(91, 155, 213, 0.3);
+  background: var(--table-header-gradient);
+  color: var(--text-strong);
+  border-bottom: 2px solid var(--border-strong);
 }
 
 .tabela-historico th {
@@ -64,38 +61,38 @@
 }
 
 .tabela-historico tbody tr {
-  border-bottom: 1px solid rgba(91, 155, 213, 0.1);
+  border-bottom: 1px solid var(--border);
   transition: background-color 0.2s;
-  background-color: #1a1a1a;
+  background-color: var(--surface-2);
 }
 
 .tabela-historico tbody tr:hover {
-  background-color: #252525;
+  background-color: var(--surface-3);
 }
 
 .tabela-historico tbody tr.removido {
   opacity: 0.7;
-  background-color: #2a1a1a;
+  background-color: rgba(211, 47, 47, 0.12);
 }
 
 .tabela-historico tbody tr.removido:hover {
-  background-color: #352525;
+  background-color: rgba(211, 47, 47, 0.2);
 }
 
 .tabela-historico tbody tr.ativo {
-  background-color: #1a2a1a;
+  background-color: rgba(46, 125, 50, 0.12);
 }
 
 .tabela-historico tbody tr.ativo:hover {
-  background-color: #253525;
+  background-color: rgba(46, 125, 50, 0.2);
 }
 
 .tabela-historico tbody tr.concluido {
-  background-color: #1a2a22;
+  background-color: rgba(46, 125, 50, 0.18);
 }
 
 .tabela-historico tbody tr.concluido:hover {
-  background-color: #25352f;
+  background-color: rgba(46, 125, 50, 0.24);
 }
 
 .tabela-historico tbody tr:last-child {
@@ -104,7 +101,7 @@
 
 .tabela-historico td {
   padding: 1rem;
-  color: #d0d0d0;
+  color: var(--text-subtle);
   font-size: 0.9rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -113,7 +110,7 @@
 .empty-state {
   text-align: center;
   padding: 3rem !important;
-  color: #888;
+  color: var(--text-muted);
   font-style: italic;
 }
 
@@ -126,19 +123,19 @@
 }
 
 .status-badge.ativo {
-  background-color: #5b9bd5;
+  background-color: var(--blue);
   color: white;
   box-shadow: 0 2px 6px rgba(91, 155, 213, 0.3);
 }
 
 .status-badge.removido {
-  background-color: #d32f2f;
+  background-color: var(--red);
   color: white;
   box-shadow: 0 2px 6px rgba(211, 47, 47, 0.3);
 }
 
 .status-badge.concluido {
-  background-color: #2e7d32;
+  background-color: var(--green);
   color: white;
   box-shadow: 0 2px 6px rgba(46, 125, 50, 0.3);
 }
@@ -150,7 +147,7 @@
   cursor: pointer;
   font-size: 0.85rem;
   font-weight: 600;
-  background-color: #d32f2f;
+  background-color: var(--red);
   color: white;
   box-shadow: 0 2px 6px rgba(211, 47, 47, 0.3);
   transition:
@@ -161,7 +158,7 @@
 }
 
 .btn-remover-historico:hover {
-  background-color: #e53935;
+  background-color: var(--red-2);
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(211, 47, 47, 0.5);
 }
@@ -169,7 +166,7 @@
 .popup-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(10, 12, 18, 0.7);
+  background: var(--overlay);
   backdrop-filter: blur(6px);
   display: flex;
   align-items: center;
@@ -180,11 +177,11 @@
 
 .popup-modal {
   width: min(520px, 95vw);
-  background: linear-gradient(135deg, #141a2a 0%, #101521 100%);
-  border: 1px solid rgba(91, 155, 213, 0.25);
+  background: var(--modal-gradient);
+  border: 1px solid var(--border);
   border-radius: 14px;
   box-shadow:
-    0 20px 60px rgba(0, 0, 0, 0.6),
+    0 20px 60px var(--shadow),
     0 0 0 1px rgba(91, 155, 213, 0.05);
   overflow: hidden;
   animation: popupFadeIn 0.18s ease-out;
@@ -192,23 +189,23 @@
 
 .popup-header {
   padding: 1.25rem 1.5rem 0.75rem;
-  border-bottom: 1px solid rgba(91, 155, 213, 0.15);
+  border-bottom: 1px solid var(--border);
 }
 
 .popup-header h3 {
-  color: #e9eef7;
+  color: var(--text-strong);
   font-size: 1.2rem;
   font-weight: 600;
 }
 
 .popup-body {
   padding: 1rem 1.5rem 1.5rem;
-  color: #d7dbe2;
+  color: var(--text-subtle);
   line-height: 1.5;
 }
 
 .popup-body strong {
-  color: #ffffff;
+  color: var(--text-strong);
 }
 
 .popup-actions {
@@ -245,7 +242,7 @@
 }
 
 .popup-btn-remover {
-  background: linear-gradient(135deg, #d32f2f 0%, #e53935 100%);
+  background: linear-gradient(135deg, var(--red) 0%, var(--red-2) 100%);
   color: white;
   box-shadow: 0 4px 12px rgba(211, 47, 47, 0.35);
 }
@@ -253,6 +250,17 @@
 .popup-btn-remover:hover {
   transform: translateY(-1px);
   box-shadow: 0 6px 16px rgba(211, 47, 47, 0.5);
+}
+
+html[data-theme="light"] .popup-btn-cancelar {
+  background: rgba(91, 155, 213, 0.22);
+  color: #1c2333;
+  border-color: rgba(91, 155, 213, 0.6);
+}
+
+html[data-theme="light"] .popup-btn-cancelar:hover {
+  background: rgba(91, 155, 213, 0.32);
+  box-shadow: 0 4px 12px rgba(91, 155, 213, 0.22);
 }
 
 @keyframes popupFadeIn {
@@ -282,5 +290,46 @@
 
   .popup-btn {
     width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .historico-header h2 {
+    font-size: 2.2rem;
+  }
+
+  .stat-item {
+    font-size: 0.95rem;
+  }
+
+  .tabela-historico {
+    min-width: 1000px;
+  }
+
+  .tabela-historico th,
+  .tabela-historico td {
+    padding: 0.85rem 0.75rem;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .historico-header h2 {
+    font-size: 1.9rem;
+  }
+
+  .tabela-historico {
+    min-width: 840px;
+  }
+
+  .tabela-historico th,
+  .tabela-historico td {
+    padding: 0.7rem 0.6rem;
+    font-size: 0.82rem;
+  }
+
+  .btn-remover-historico {
+    padding: 0.35rem 0.7rem;
+    font-size: 0.8rem;
   }
 }

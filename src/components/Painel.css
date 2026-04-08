@@ -5,8 +5,9 @@
 .painel-header {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
-  align-items: center;
   margin-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
 }
 
 .painel-title {
@@ -27,23 +28,26 @@
 }
 
 .painel-header h2 {
-  color: #e0e0e0;
+  color: var(--text);
   font-size: 3rem;
   font-weight: 600;
 }
 
 .painel-stat {
-  color: #b0b0b0;
+  color: var(--text-muted);
   font-size: 1rem;
+  display: flex;
+  gap: 0.35rem;
+  align-items: center;
 }
 
 .painel-stat strong {
-  color: #5b9bd5;
+  color: var(--blue);
   font-size: 1.1rem;
 }
 
 .btn-adicionar {
-  background: linear-gradient(135deg, #5b9bd5 0%, #6ba3d6 100%);
+  background: linear-gradient(135deg, var(--blue) 0%, var(--blue-2) 100%);
   color: white;
   border: none;
   padding: 0.75rem 1.5rem;
@@ -61,7 +65,7 @@
 .btn-adicionar:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 16px rgba(91, 155, 213, 0.5);
-  background: linear-gradient(135deg, #6ba3d6 0%, #7bb3e6 100%);
+  background: linear-gradient(135deg, var(--blue-2) 0%, #7bb3e6 100%);
 }
 
 .btn-teste {
@@ -86,10 +90,10 @@
 }
 
 .tabela-container {
-  background: #1a1a1a;
+  background: var(--surface-2);
   border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-  border: 1px solid rgba(91, 155, 213, 0.1);
+  box-shadow: 0 4px 20px var(--shadow);
+  border: 1px solid var(--border);
   overflow: hidden;
   overflow-x: auto;
 }
@@ -101,9 +105,9 @@
 }
 
 .tabela-eventos thead {
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-  color: white;
-  border-bottom: 2px solid rgba(91, 155, 213, 0.3);
+  background: var(--table-header-gradient);
+  color: var(--text-strong);
+  border-bottom: 2px solid var(--border-strong);
 }
 
 .tabela-eventos th {
@@ -114,13 +118,13 @@
 }
 
 .tabela-eventos tbody tr {
-  border-bottom: 1px solid rgba(91, 155, 213, 0.1);
+  border-bottom: 1px solid var(--border);
   transition: background-color 0.2s;
-  background-color: #1a1a1a;
+  background-color: var(--surface-2);
 }
 
 .tabela-eventos tbody tr:hover {
-  background-color: #252525;
+  background-color: var(--surface-3);
 }
 
 .tabela-eventos tbody tr:last-child {
@@ -129,7 +133,7 @@
 
 .tabela-eventos td {
   padding: 1rem;
-  color: #d0d0d0;
+  color: var(--text-subtle);
   font-size: 0.9rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -164,7 +168,7 @@
 .empty-state {
   text-align: center;
   padding: 3rem !important;
-  color: #888;
+  color: var(--text-muted);
   font-style: italic;
 }
 
@@ -186,25 +190,25 @@
 }
 
 .btn-editar {
-  background-color: #5b9bd5;
+  background-color: var(--blue);
   color: white;
   box-shadow: 0 2px 6px rgba(91, 155, 213, 0.3);
 }
 
 .btn-editar:hover {
-  background-color: #6ba3d6;
+  background-color: var(--blue-2);
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(91, 155, 213, 0.5);
 }
 
 .btn-remover {
-  background-color: #d32f2f;
+  background-color: var(--red);
   color: white;
   box-shadow: 0 2px 6px rgba(211, 47, 47, 0.3);
 }
 
 .btn-remover:hover {
-  background-color: #e53935;
+  background-color: var(--red-2);
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(211, 47, 47, 0.5);
 }
@@ -218,13 +222,13 @@
   font-weight: 500;
   transition: all 0.2s;
   white-space: nowrap;
-  background-color: #2e7d32;
+  background-color: var(--green);
   color: white;
   box-shadow: 0 2px 6px rgba(46, 125, 50, 0.3);
 }
 
 .btn-concluir:hover:not(:disabled) {
-  background-color: #388e3c;
+  background-color: var(--green-2);
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(46, 125, 50, 0.5);
 }
@@ -238,7 +242,7 @@
 .popup-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(10, 12, 18, 0.7);
+  background: var(--overlay);
   backdrop-filter: blur(6px);
   display: flex;
   align-items: center;
@@ -249,11 +253,11 @@
 
 .popup-modal {
   width: min(520px, 95vw);
-  background: linear-gradient(135deg, #141a2a 0%, #101521 100%);
-  border: 1px solid rgba(91, 155, 213, 0.25);
+  background: var(--modal-gradient);
+  border: 1px solid var(--border);
   border-radius: 14px;
   box-shadow:
-    0 20px 60px rgba(0, 0, 0, 0.6),
+    0 20px 60px var(--shadow),
     0 0 0 1px rgba(91, 155, 213, 0.05);
   overflow: hidden;
   animation: popupFadeIn 0.18s ease-out;
@@ -261,23 +265,23 @@
 
 .popup-header {
   padding: 1.25rem 1.5rem 0.75rem;
-  border-bottom: 1px solid rgba(91, 155, 213, 0.15);
+  border-bottom: 1px solid var(--border);
 }
 
 .popup-header h3 {
-  color: #e9eef7;
+  color: var(--text-strong);
   font-size: 1.2rem;
   font-weight: 600;
 }
 
 .popup-body {
   padding: 1rem 1.5rem 1.5rem;
-  color: #d7dbe2;
+  color: var(--text-subtle);
   line-height: 1.5;
 }
 
 .popup-body strong {
-  color: #ffffff;
+  color: var(--text-strong);
 }
 
 .popup-actions {
@@ -314,7 +318,7 @@
 }
 
 .popup-btn-remover {
-  background: linear-gradient(135deg, #d32f2f 0%, #e53935 100%);
+  background: linear-gradient(135deg, var(--red) 0%, var(--red-2) 100%);
   color: white;
   box-shadow: 0 4px 12px rgba(211, 47, 47, 0.35);
 }
@@ -322,6 +326,28 @@
 .popup-btn-remover:hover {
   transform: translateY(-1px);
   box-shadow: 0 6px 16px rgba(211, 47, 47, 0.5);
+}
+
+html[data-theme="light"] .btn-teste {
+  background: rgba(91, 155, 213, 0.22);
+  color: #1c2333;
+  border-color: rgba(91, 155, 213, 0.6);
+}
+
+html[data-theme="light"] .btn-teste:hover {
+  background: rgba(91, 155, 213, 0.3);
+  box-shadow: 0 4px 12px rgba(91, 155, 213, 0.22);
+}
+
+html[data-theme="light"] .popup-btn-cancelar {
+  background: rgba(91, 155, 213, 0.22);
+  color: #1c2333;
+  border-color: rgba(91, 155, 213, 0.6);
+}
+
+html[data-theme="light"] .popup-btn-cancelar:hover {
+  background: rgba(91, 155, 213, 0.32);
+  box-shadow: 0 4px 12px rgba(91, 155, 213, 0.22);
 }
 
 @keyframes popupFadeIn {
@@ -371,5 +397,52 @@
 
   .popup-btn {
     width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .painel-header h2 {
+    font-size: 2.2rem;
+  }
+
+  .painel-stat {
+    font-size: 0.95rem;
+  }
+
+  .tabela-eventos {
+    min-width: 980px;
+  }
+
+  .tabela-eventos th,
+  .tabela-eventos td {
+    padding: 0.85rem 0.75rem;
+    font-size: 0.85rem;
+  }
+
+  .btn-adicionar,
+  .btn-teste {
+    padding: 0.65rem 1.1rem;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .painel-header h2 {
+    font-size: 1.9rem;
+  }
+
+  .tabela-eventos {
+    min-width: 820px;
+  }
+
+  .tabela-eventos th,
+  .tabela-eventos td {
+    padding: 0.7rem 0.6rem;
+    font-size: 0.82rem;
+  }
+
+  .btn-adicionar,
+  .btn-teste {
+    font-size: 0.9rem;
   }
 }

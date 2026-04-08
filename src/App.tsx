@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route, NavLink } from "react-router-dom";
 import Painel from "./components/Painel";
 import Historico from "./components/Historico";
@@ -6,44 +7,101 @@ import "./App.css";
 
 /**
  * Componente raiz de layout e rotas.
- * O Router fica aqui para que a navegaÃ§Ã£o e o topo sejam persistentes
- * entre as telas de Painel e HistÃ³rico.
+ * O Router fica aqui para que a navegação e o topo sejam persistentes
+ * entre as telas de Painel e Histórico.
  */
 function App() {
+  const [tema, setTema] = useState<"dark" | "light">("dark");
+
+  useEffect(() => {
+    const salvo = localStorage.getItem("tema_app");
+    if (salvo === "light" || salvo === "dark") {
+      setTema(salvo);
+      return;
+    }
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = tema;
+    localStorage.setItem("tema_app", tema);
+  }, [tema]);
+
   return (
     <Router>
       <div className="app">
-        <nav className="navbar">
-          <div className="nav-container">
-            <div className="nav-title-wrapper">
-              <img
-                className="nav-logo"
-                src="https://www.gnu.com.br/site/img/logo-gnu.svg"
-                alt="Logo GNU"
-              />
-              <h1 className="nav-title">Painel de Montagem</h1>
-            </div>
-            <div className="nav-links">
-              <NavLink to="/" className="nav-link">
-                Painel
-              </NavLink>
-              <NavLink to="/historico" className="nav-link">
-                HistÃ³rico
-              </NavLink>
-              <NavLink to="/inventario" className="nav-link">
-                InventÃ¡rio
-              </NavLink>
+        <header className="app-header">
+          <div className="header-content">
+            <img
+              className="header-logo"
+              src="https://www.gnu.com.br/site/img/logo-gnu.svg"
+              alt="Logo GNU"
+            />
+            <h1 className="header-title">Painel de Montagem</h1>
+            <div className="header-actions">
+              <button
+                type="button"
+                className="theme-toggle"
+                onClick={() =>
+                  setTema((prev) => (prev === "dark" ? "light" : "dark"))
+                }
+                aria-label={tema === "dark" ? "Ativar modo claro" : "Ativar modo escuro"}
+                title={tema === "dark" ? "Ativar modo claro" : "Ativar modo escuro"}
+              >
+                <span className="theme-toggle-icon" aria-hidden="true">
+                  {tema === "dark" ? (
+                    <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+                      <circle cx="12" cy="12" r="4" />
+                      <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+                    </svg>
+                  ) : (
+                    <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+                      <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z" />
+                    </svg>
+                  )}
+                </span>
+              </button>
             </div>
           </div>
-        </nav>
-        <main className="main-content">
-          {/* Rotas separadas para manter cada tela isolada e simples */}
-          <Routes>
-            <Route path="/" element={<Painel />} />
-            <Route path="/historico" element={<Historico />} />
-            <Route path="/inventario" element={<InventarioMontagem />} />
-          </Routes>
-        </main>
+        </header>
+        <div className="app-body">
+          <aside className="side-nav">
+            <div className="side-nav-title">Navegação</div>
+            <nav className="side-nav-links">
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
+                  `side-nav-link${isActive ? " active" : ""}`
+                }
+              >
+                Painel
+              </NavLink>
+              <NavLink
+                to="/historico"
+                className={({ isActive }) =>
+                  `side-nav-link${isActive ? " active" : ""}`
+                }
+              >
+                Histórico
+              </NavLink>
+              <NavLink
+                to="/inventario"
+                className={({ isActive }) =>
+                  `side-nav-link${isActive ? " active" : ""}`
+                }
+              >
+                Inventário
+              </NavLink>
+            </nav>
+          </aside>
+          <main className="main-content">
+            {/* Rotas separadas para manter cada tela isolada e simples */}
+            <Routes>
+              <Route path="/" element={<Painel />} />
+              <Route path="/historico" element={<Historico />} />
+              <Route path="/inventario" element={<InventarioMontagem />} />
+            </Routes>
+          </main>
+        </div>
       </div>
     </Router>
   );

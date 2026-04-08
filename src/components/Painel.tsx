@@ -1,4 +1,4 @@
-﻿import { useState, useEffect } from "react";
+﻿import { useCallback, useEffect, useMemo, useState } from "react";
 import { Evento } from "../types";
 import { getEventos, saveEventos, addToHistorico } from "../utils/storage";
 import {
@@ -28,32 +28,36 @@ const Painel = () => {
     setEventos(eventosAtivos);
   }, []);
 
+  const refreshEventosAtivos = useCallback(() => {
+    setEventos(getEventos().filter((e) => !e.removido));
+  }, []);
+
   /**
    * Abre o formulário em modo de criação.
    * O evento em edição é limpo para evitar preenchimento acidental.
    */
-  const handleAdicionar = () => {
+  const handleAdicionar = useCallback(() => {
     setEventoEditando(null);
     setMostrarFormulario(true);
-  };
+  }, []);
 
   /**
    * Cria um evento fictício para testes rápidos de UI.
    * Útil para validação visual sem precisar preencher o formulário.
    */
-  const handleAdicionarTeste = () => {
+  const handleAdicionarTeste = useCallback(() => {
     const nomesEvento = [
       "Montagem de palco",
       "Evento corporativo",
       "Workshop de treinamento",
-      "Palestra tecnica",
+      "Palestra técnica",
       "Show interno",
     ];
     const locais = [
-      "Auditorio Principal",
+      "Auditório Principal",
       "Sala 201",
-      "Espaco Expo",
-      "Centro de Convencoes",
+      "Espaço Expo",
+      "Centro de Convenções",
       "Sala Multiuso",
     ];
     const funcionarios = [
@@ -66,7 +70,7 @@ const Painel = () => {
     const equipamentos = [
       "2 caixas de som, 1 mixer",
       "4 microfones, 1 projetor",
-      "Iluminacao basica, cabos",
+      "Iluminação básica, cabos",
       "Tela, notebook, HDMI",
       "Som ambiente, microfone sem fio",
     ];
@@ -97,35 +101,33 @@ const Painel = () => {
 
     const todosEventos = getEventos();
     saveEventos([...todosEventos, novoEvento]);
-
-    const eventosAtivos = getEventos().filter((e) => !e.removido);
-    setEventos(eventosAtivos);
-  };
+    refreshEventosAtivos();
+  }, [refreshEventosAtivos]);
 
   /**
    * Abre o formulário preenchido para edição.
    *
    * @param evento Evento selecionado na tabela.
    */
-  const handleEditar = (evento: Evento) => {
+  const handleEditar = useCallback((evento: Evento) => {
     setEventoEditando(evento);
     setMostrarFormulario(true);
-  };
+  }, []);
 
   /**
    * Dispara o modal de confirmação antes da remoção.
    *
    * @param evento Evento alvo da remoção.
    */
-  const handleRemover = (evento: Evento) => {
+  const handleRemover = useCallback((evento: Evento) => {
     setEventoParaRemover(evento);
-  };
+  }, []);
 
   /**
    * Confirma a remoção lógica do evento, preservando histórico.
    * A remoção é "soft delete" para permitir auditoria na tela de histórico.
    */
-  const handleConfirmarRemocao = () => {
+  const handleConfirmarRemocao = useCallback(() => {
     if (!eventoParaRemover) return;
 
     const todosEventos = getEventos();
@@ -142,17 +144,16 @@ const Painel = () => {
     saveEventos(eventosAtualizados);
     addToHistorico(eventoAtualizado);
 
-    const eventosAtivos = eventosAtualizados.filter((e) => !e.removido);
-    setEventos(eventosAtivos);
+    setEventos(eventosAtualizados.filter((e) => !e.removido));
     setEventoParaRemover(null);
-  };
+  }, [eventoParaRemover]);
 
   /**
    * Fecha o modal sem alterar dados.
    */
-  const handleCancelarRemocao = () => {
+  const handleCancelarRemocao = useCallback(() => {
     setEventoParaRemover(null);
-  };
+  }, []);
 
   useEffect(() => {
     if (!eventoParaRemover) return;
@@ -181,7 +182,7 @@ const Painel = () => {
    *
    * @param evento Evento a concluir.
    */
-  const handleConcluir = (evento: Evento) => {
+  const handleConcluir = useCallback((evento: Evento) => {
     if (evento.concluido) return;
 
     const todosEventos = getEventos();
@@ -199,16 +200,16 @@ const Painel = () => {
 
     saveEventos(eventosAtualizados);
     addToHistorico(eventoAtualizado);
-    const eventosAtivos = eventosAtualizados.filter((e) => !e.removido);
-    setEventos(eventosAtivos);
-  };
+    setEventos(eventosAtualizados.filter((e) => !e.removido));
+  }, []);
 
   /**
    * Salva o evento vindo do formulário, criando ou atualizando.
    *
    * @param evento Evento já validado no formulário.
    */
-  const handleSalvar = (evento: Evento) => {
+  const handleSalvar = useCallback(
+    (evento: Evento) => {
     const todosEventos = getEventos();
 
     if (eventoEditando) {
@@ -226,19 +227,31 @@ const Painel = () => {
       saveEventos([...todosEventos, novoEvento]);
     }
 
-    const eventosAtivos = getEventos().filter((e) => !e.removido);
-    setEventos(eventosAtivos);
+    refreshEventosAtivos();
     setMostrarFormulario(false);
     setEventoEditando(null);
-  };
+    },
+    [eventoEditando, refreshEventosAtivos],
+  );
 
   /**
    * Fecha o formulário sem persistir alterações.
    */
-  const handleCancelar = () => {
+  const handleCancelar = useCallback(() => {
     setMostrarFormulario(false);
     setEventoEditando(null);
-  };
+  }, []);
+
+  const eventosView = useMemo(
+    () =>
+      eventos.map((evento) => ({
+        ...evento,
+        dataHoraFormatada: formatDateTime(evento.dataHora),
+        diaSemanaFormatado: getDiaSemana(evento.dataHora),
+        urgente: faltamDoisDiasOuMenos(evento.dataHora),
+      })),
+    [eventos],
+  );
 
   return (
     <div className="painel">
@@ -283,27 +296,23 @@ const Painel = () => {
             </tr>
           </thead>
           <tbody>
-            {eventos.length === 0 ? (
+            {eventosView.length === 0 ? (
               <tr>
                 <td colSpan={9} className="empty-state">
                   Nenhum evento cadastrado. Clique em "Adicionar Evento" para
-                  comecar.
+                  começar.
                 </td>
               </tr>
             ) : (
-              eventos.map((evento) => (
+              eventosView.map((evento) => (
                 <tr
                   key={evento.id}
-                  className={
-                    faltamDoisDiasOuMenos(evento.dataHora)
-                      ? "linha-urgente"
-                      : undefined
-                  }
+                  className={evento.urgente ? "linha-urgente" : undefined}
                 >
                   <td>{evento.nomeEvento}</td>
                   <td>{evento.adicionadoPor || "-"}</td>
-                  <td>{formatDateTime(evento.dataHora)}</td>
-                  <td>{getDiaSemana(evento.dataHora)}</td>
+                  <td>{evento.dataHoraFormatada}</td>
+                  <td>{evento.diaSemanaFormatado}</td>
                   <td>{evento.localEvento}</td>
                   <td>{evento.funcionarioPlantao}</td>
                   <td>{evento.equipamentosNecessarios}</td>
@@ -320,10 +329,10 @@ const Painel = () => {
                       <button
                         className="btn-concluir"
                         onClick={() => handleConcluir(evento)}
-                        title="Marcar como concluido"
+                        title="Marcar como concluído"
                         disabled={evento.concluido}
                       >
-                        {evento.concluido ? "Concluido" : "✅"}
+                        {evento.concluido ? "Concluído" : "✅"}
                       </button>
                       <button
                         className="btn-remover"
@@ -385,3 +394,4 @@ const Painel = () => {
 };
 
 export default Painel;
+
