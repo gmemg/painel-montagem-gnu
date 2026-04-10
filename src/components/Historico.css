@@ -125,19 +125,22 @@
 .status-badge.ativo {
   background-color: var(--blue);
   color: white;
-  box-shadow: 0 2px 6px rgba(91, 155, 213, 0.3);
+  border: 1px solid rgba(91, 155, 213, 0.6);
+  box-shadow: 0 1px 4px rgba(7, 18, 38, 0.2);
 }
 
 .status-badge.removido {
   background-color: var(--red);
   color: white;
-  box-shadow: 0 2px 6px rgba(211, 47, 47, 0.3);
+  border: 1px solid rgba(211, 47, 47, 0.6);
+  box-shadow: 0 1px 4px rgba(7, 18, 38, 0.2);
 }
 
 .status-badge.concluido {
   background-color: var(--green);
   color: white;
-  box-shadow: 0 2px 6px rgba(46, 125, 50, 0.3);
+  border: 1px solid rgba(46, 125, 50, 0.6);
+  box-shadow: 0 1px 4px rgba(7, 18, 38, 0.2);
 }
 
 .btn-remover-historico {
@@ -149,7 +152,8 @@
   font-weight: 600;
   background-color: var(--red);
   color: white;
-  box-shadow: 0 2px 6px rgba(211, 47, 47, 0.3);
+  border: 1px solid rgba(211, 47, 47, 0.6);
+  box-shadow: 0 1px 4px rgba(7, 18, 38, 0.2);
   transition:
     transform 0.2s,
     box-shadow 0.2s,
@@ -160,7 +164,7 @@
 .btn-remover-historico:hover {
   background-color: var(--red-2);
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(211, 47, 47, 0.5);
+  box-shadow: 0 4px 10px rgba(7, 18, 38, 0.25);
 }
 
 .popup-overlay {
@@ -231,8 +235,8 @@
 
 .popup-btn-cancelar {
   background: rgba(91, 155, 213, 0.12);
-  color: #cfe2f5;
-  border: 1px solid rgba(91, 155, 213, 0.35);
+  color: var(--text);
+  border: 1px solid rgba(91, 155, 213, 0.45);
 }
 
 .popup-btn-cancelar:hover {
@@ -242,9 +246,10 @@
 }
 
 .popup-btn-remover {
-  background: linear-gradient(135deg, var(--red) 0%, var(--red-2) 100%);
+  background: var(--red);
   color: white;
-  box-shadow: 0 4px 12px rgba(211, 47, 47, 0.35);
+  border: 1px solid rgba(211, 47, 47, 0.6);
+  box-shadow: 0 2px 8px rgba(7, 18, 38, 0.2);
 }
 
 .popup-btn-remover:hover {
@@ -253,14 +258,14 @@
 }
 
 html[data-theme="light"] .popup-btn-cancelar {
-  background: rgba(91, 155, 213, 0.22);
+  background: rgba(91, 155, 213, 0.18);
   color: #1c2333;
-  border-color: rgba(91, 155, 213, 0.6);
+  border-color: rgba(91, 155, 213, 0.55);
 }
 
 html[data-theme="light"] .popup-btn-cancelar:hover {
-  background: rgba(91, 155, 213, 0.32);
-  box-shadow: 0 4px 12px rgba(91, 155, 213, 0.22);
+  background: rgba(91, 155, 213, 0.28);
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.12);
 }
 
 @keyframes popupFadeIn {

@@ -47,9 +47,9 @@
 }
 
 .btn-adicionar {
-  background: linear-gradient(135deg, var(--blue) 0%, var(--blue-2) 100%);
+  background-color: var(--blue);
   color: white;
-  border: none;
+  border: 1px solid rgba(91, 155, 213, 0.6);
   padding: 0.75rem 1.5rem;
   border-radius: 8px;
   font-size: 1rem;
@@ -59,19 +59,19 @@
     transform 0.2s,
     box-shadow 0.2s,
     background 0.2s;
-  box-shadow: 0 2px 8px rgba(91, 155, 213, 0.3);
+  box-shadow: 0 1px 4px rgba(7, 18, 38, 0.25);
 }
 
 .btn-adicionar:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(91, 155, 213, 0.5);
-  background: linear-gradient(135deg, var(--blue-2) 0%, #7bb3e6 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(7, 18, 38, 0.25);
+  background-color: var(--blue-2);
 }
 
 .btn-teste {
-  background: rgba(91, 155, 213, 0.12);
-  color: #cfe2f5;
-  border: 1px solid rgba(91, 155, 213, 0.35);
+  background: rgba(91, 155, 213, 0.1);
+  color: var(--text);
+  border: 1px solid rgba(91, 155, 213, 0.45);
   padding: 0.75rem 1.2rem;
   border-radius: 8px;
   font-size: 0.95rem;
@@ -84,9 +84,9 @@
 }
 
 .btn-teste:hover {
-  transform: translateY(-2px);
-  background: rgba(91, 155, 213, 0.2);
-  box-shadow: 0 4px 12px rgba(91, 155, 213, 0.25);
+  transform: translateY(-1px);
+  background: rgba(91, 155, 213, 0.18);
+  box-shadow: 0 4px 10px rgba(7, 18, 38, 0.2);
 }
 
 .tabela-container {
@@ -192,25 +192,27 @@
 .btn-editar {
   background-color: var(--blue);
   color: white;
-  box-shadow: 0 2px 6px rgba(91, 155, 213, 0.3);
+  border: 1px solid rgba(91, 155, 213, 0.6);
+  box-shadow: 0 1px 4px rgba(7, 18, 38, 0.25);
 }
 
 .btn-editar:hover {
   background-color: var(--blue-2);
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(91, 155, 213, 0.5);
+  box-shadow: 0 4px 10px rgba(7, 18, 38, 0.25);
 }
 
 .btn-remover {
   background-color: var(--red);
   color: white;
-  box-shadow: 0 2px 6px rgba(211, 47, 47, 0.3);
+  border: 1px solid rgba(211, 47, 47, 0.6);
+  box-shadow: 0 1px 4px rgba(7, 18, 38, 0.25);
 }
 
 .btn-remover:hover {
   background-color: var(--red-2);
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(211, 47, 47, 0.5);
+  box-shadow: 0 4px 10px rgba(7, 18, 38, 0.25);
 }
 
 .btn-concluir {
@@ -224,13 +226,14 @@
   white-space: nowrap;
   background-color: var(--green);
   color: white;
-  box-shadow: 0 2px 6px rgba(46, 125, 50, 0.3);
+  border: 1px solid rgba(46, 125, 50, 0.6);
+  box-shadow: 0 1px 4px rgba(7, 18, 38, 0.25);
 }
 
 .btn-concluir:hover:not(:disabled) {
   background-color: var(--green-2);
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(46, 125, 50, 0.5);
+  box-shadow: 0 4px 10px rgba(7, 18, 38, 0.25);
 }
 
 .btn-concluir:disabled {
@@ -307,8 +310,8 @@
 
 .popup-btn-cancelar {
   background: rgba(91, 155, 213, 0.12);
-  color: #cfe2f5;
-  border: 1px solid rgba(91, 155, 213, 0.35);
+  color: var(--text);
+  border: 1px solid rgba(91, 155, 213, 0.45);
 }
 
 .popup-btn-cancelar:hover {
@@ -318,9 +321,10 @@
 }
 
 .popup-btn-remover {
-  background: linear-gradient(135deg, var(--red) 0%, var(--red-2) 100%);
+  background: var(--red);
   color: white;
-  box-shadow: 0 4px 12px rgba(211, 47, 47, 0.35);
+  border: 1px solid rgba(211, 47, 47, 0.6);
+  box-shadow: 0 2px 8px rgba(7, 18, 38, 0.2);
 }
 
 .popup-btn-remover:hover {
@@ -329,25 +333,25 @@
 }
 
 html[data-theme="light"] .btn-teste {
-  background: rgba(91, 155, 213, 0.22);
+  background: rgba(91, 155, 213, 0.18);
   color: #1c2333;
-  border-color: rgba(91, 155, 213, 0.6);
+  border-color: rgba(91, 155, 213, 0.55);
 }
 
 html[data-theme="light"] .btn-teste:hover {
-  background: rgba(91, 155, 213, 0.3);
-  box-shadow: 0 4px 12px rgba(91, 155, 213, 0.22);
+  background: rgba(91, 155, 213, 0.26);
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.15);
 }
 
 html[data-theme="light"] .popup-btn-cancelar {
-  background: rgba(91, 155, 213, 0.22);
+  background: rgba(91, 155, 213, 0.18);
   color: #1c2333;
-  border-color: rgba(91, 155, 213, 0.6);
+  border-color: rgba(91, 155, 213, 0.55);
 }
 
 html[data-theme="light"] .popup-btn-cancelar:hover {
-  background: rgba(91, 155, 213, 0.32);
-  box-shadow: 0 4px 12px rgba(91, 155, 213, 0.22);
+  background: rgba(91, 155, 213, 0.28);
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.12);
 }
 
 @keyframes popupFadeIn {

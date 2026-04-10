@@ -52,9 +52,9 @@
 }
 
 .btn-add-item {
-  background: linear-gradient(135deg, var(--blue) 0%, var(--blue-2) 100%);
+  background-color: var(--blue);
   color: white;
-  border: none;
+  border: 1px solid rgba(91, 155, 213, 0.6);
   padding: 0.7rem 1.3rem;
   border-radius: 8px;
   font-size: 0.95rem;
@@ -64,13 +64,13 @@
     transform 0.2s,
     box-shadow 0.2s,
     background 0.2s;
-  box-shadow: 0 2px 8px rgba(91, 155, 213, 0.3);
+  box-shadow: 0 1px 4px rgba(7, 18, 38, 0.25);
 }
 
 .btn-add-item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(91, 155, 213, 0.5);
-  background: linear-gradient(135deg, var(--blue-2) 0%, #7bb3e6 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(7, 18, 38, 0.25);
+  background-color: var(--blue-2);
 }
 
 .inventario-modal-overlay {
@@ -175,8 +175,8 @@
 
 .btn-cancelar-item {
   background: rgba(91, 155, 213, 0.12);
-  color: #cfe2f5;
-  border: 1px solid rgba(91, 155, 213, 0.35);
+  color: var(--text);
+  border: 1px solid rgba(91, 155, 213, 0.45);
   padding: 0.65rem 1.2rem;
   border-radius: 8px;
   font-size: 0.9rem;
@@ -191,13 +191,13 @@
 .btn-cancelar-item:hover {
   transform: translateY(-1px);
   background: rgba(91, 155, 213, 0.2);
-  box-shadow: 0 4px 12px rgba(91, 155, 213, 0.25);
+  box-shadow: 0 4px 10px rgba(7, 18, 38, 0.2);
 }
 
 .btn-salvar-item {
-  background: linear-gradient(135deg, var(--blue) 0%, var(--blue-2) 100%);
+  background: var(--blue);
   color: white;
-  border: none;
+  border: 1px solid rgba(91, 155, 213, 0.6);
   padding: 0.65rem 1.4rem;
   border-radius: 8px;
   font-size: 0.9rem;
@@ -207,19 +207,19 @@
     transform 0.2s,
     box-shadow 0.2s,
     background 0.2s;
-  box-shadow: 0 2px 8px rgba(91, 155, 213, 0.3);
+  box-shadow: 0 1px 4px rgba(7, 18, 38, 0.25);
 }
 
 .btn-salvar-item:hover {
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(91, 155, 213, 0.45);
-  background: linear-gradient(135deg, var(--blue-2) 0%, #7bb3e6 100%);
+  box-shadow: 0 4px 10px rgba(7, 18, 38, 0.25);
+  background: var(--blue-2);
 }
 
 .btn-remover-item-confirmar {
-  background: linear-gradient(135deg, var(--red) 0%, var(--red-2) 100%);
+  background: var(--red);
   color: white;
-  border: none;
+  border: 1px solid rgba(211, 47, 47, 0.6);
   padding: 0.65rem 1.4rem;
   border-radius: 8px;
   font-size: 0.9rem;
@@ -229,12 +229,12 @@
     transform 0.2s,
     box-shadow 0.2s,
     background 0.2s;
-  box-shadow: 0 2px 8px rgba(211, 47, 47, 0.35);
+  box-shadow: 0 1px 4px rgba(7, 18, 38, 0.25);
 }
 
 .btn-remover-item-confirmar:hover {
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(211, 47, 47, 0.5);
+  box-shadow: 0 4px 10px rgba(7, 18, 38, 0.25);
 }
 
 .inventario-card {
@@ -282,9 +282,9 @@
 }
 
 .btn-add-unit-header {
-  background: rgba(91, 155, 213, 0.16);
-  color: #e4f0fb;
-  border: 1px solid rgba(91, 155, 213, 0.5);
+  background: rgba(91, 155, 213, 0.14);
+  color: var(--text);
+  border: 1px solid rgba(91, 155, 213, 0.55);
   padding: 0.45rem 0.75rem;
   border-radius: 8px;
   font-size: 0.85rem;
@@ -298,13 +298,13 @@
 
 .btn-add-unit-header:hover {
   transform: translateY(-1px);
-  background: rgba(91, 155, 213, 0.28);
-  box-shadow: 0 4px 12px rgba(91, 155, 213, 0.25);
+  background: rgba(91, 155, 213, 0.24);
+  box-shadow: 0 4px 10px rgba(7, 18, 38, 0.2);
 }
 
 .btn-toggle {
   border: 1px solid rgba(91, 155, 213, 0.4);
-  background: rgba(91, 155, 213, 0.18);
+  background: rgba(91, 155, 213, 0.16);
   color: var(--text);
   border-radius: 8px;
   padding: 0.3rem 0.7rem;
@@ -319,14 +319,14 @@
 
 .btn-toggle:hover {
   transform: translateY(-1px);
-  background: rgba(91, 155, 213, 0.3);
-  box-shadow: 0 4px 12px rgba(91, 155, 213, 0.25);
+  background: rgba(91, 155, 213, 0.26);
+  box-shadow: 0 4px 10px rgba(7, 18, 38, 0.2);
 }
 
 .btn-remover-item {
   background: rgba(211, 47, 47, 0.12);
-  color: #f3c6c6;
-  border: 1px solid rgba(211, 47, 47, 0.4);
+  color: var(--text);
+  border: 1px solid rgba(211, 47, 47, 0.5);
   padding: 0.5rem 0.9rem;
   border-radius: 8px;
   font-size: 0.85rem;
@@ -340,8 +340,8 @@
 
 .btn-remover-item:hover {
   transform: translateY(-1px);
-  background: rgba(211, 47, 47, 0.25);
-  box-shadow: 0 4px 12px rgba(211, 47, 47, 0.25);
+  background: rgba(211, 47, 47, 0.22);
+  box-shadow: 0 4px 10px rgba(7, 18, 38, 0.2);
 }
 
 .inventario-card-body {
@@ -452,7 +452,7 @@
 .btn-remover-unidade {
   background-color: var(--red);
   color: white;
-  border: none;
+  border: 1px solid rgba(211, 47, 47, 0.6);
   padding: 0.5rem 1rem;
   border-radius: 6px;
   cursor: pointer;
@@ -467,48 +467,48 @@
 .btn-remover-unidade:hover {
   background-color: var(--red-2);
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(211, 47, 47, 0.5);
+  box-shadow: 0 4px 10px rgba(7, 18, 38, 0.25);
 }
 
 html[data-theme="light"] .btn-cancelar-item {
-  background: rgba(91, 155, 213, 0.22);
+  background: rgba(91, 155, 213, 0.18);
   color: #1c2333;
-  border-color: rgba(91, 155, 213, 0.6);
-}
-
-html[data-theme="light"] .btn-cancelar-item:hover {
-  background: rgba(91, 155, 213, 0.32);
-  box-shadow: 0 4px 12px rgba(91, 155, 213, 0.22);
-}
-
-html[data-theme="light"] .btn-add-unit-header {
-  background: rgba(91, 155, 213, 0.24);
-  color: #1c2333;
-  border-color: rgba(91, 155, 213, 0.6);
-}
-
-html[data-theme="light"] .btn-add-unit-header:hover {
-  background: rgba(91, 155, 213, 0.34);
-}
-
-html[data-theme="light"] .btn-toggle {
-  background: rgba(91, 155, 213, 0.24);
   border-color: rgba(91, 155, 213, 0.55);
 }
 
+html[data-theme="light"] .btn-cancelar-item:hover {
+  background: rgba(91, 155, 213, 0.28);
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.12);
+}
+
+html[data-theme="light"] .btn-add-unit-header {
+  background: rgba(91, 155, 213, 0.2);
+  color: #1c2333;
+  border-color: rgba(91, 155, 213, 0.55);
+}
+
+html[data-theme="light"] .btn-add-unit-header:hover {
+  background: rgba(91, 155, 213, 0.3);
+}
+
+html[data-theme="light"] .btn-toggle {
+  background: rgba(91, 155, 213, 0.2);
+  border-color: rgba(91, 155, 213, 0.5);
+}
+
 html[data-theme="light"] .btn-toggle:hover {
-  background: rgba(91, 155, 213, 0.34);
+  background: rgba(91, 155, 213, 0.3);
 }
 
 html[data-theme="light"] .btn-remover-item {
-  background: rgba(211, 47, 47, 0.2);
+  background: rgba(211, 47, 47, 0.16);
   color: #7a1f1f;
-  border-color: rgba(211, 47, 47, 0.6);
+  border-color: rgba(211, 47, 47, 0.5);
 }
 
 html[data-theme="light"] .btn-remover-item:hover {
-  background: rgba(211, 47, 47, 0.3);
-  box-shadow: 0 4px 12px rgba(211, 47, 47, 0.2);
+  background: rgba(211, 47, 47, 0.26);
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.12);
 }
 
 .empty-state {

@@ -65,8 +65,9 @@ function App() {
         </header>
         <div className="app-body">
           <aside className="side-nav">
-            <div className="side-nav-title">Navegação</div>
-            <nav className="side-nav-links">
+            <div className="side-nav-inner">
+              <div className="side-nav-title">Navegação</div>
+              <nav className="side-nav-links">
               <NavLink
                 to="/"
                 className={({ isActive }) =>
@@ -83,15 +84,16 @@ function App() {
               >
                 Histórico
               </NavLink>
-              <NavLink
-                to="/inventario"
-                className={({ isActive }) =>
-                  `side-nav-link${isActive ? " active" : ""}`
-                }
-              >
-                Inventário
-              </NavLink>
-            </nav>
+                <NavLink
+                  to="/inventario"
+                  className={({ isActive }) =>
+                    `side-nav-link${isActive ? " active" : ""}`
+                  }
+                >
+                  Inventário
+                </NavLink>
+              </nav>
+            </div>
           </aside>
           <main className="main-content">
             {/* Rotas separadas para manter cada tela isolada e simples */}
@@ -108,3 +110,4 @@ function App() {
 }
 
 export default App;
+
