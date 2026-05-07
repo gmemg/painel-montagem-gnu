@@ -1,6 +1,11 @@
 ﻿import { useCallback, useEffect, useMemo, useState } from "react";
 import { Evento } from "../types";
-import { getEventos, saveEventos, addToHistorico } from "../utils/storage";
+import {
+  addToHistorico,
+  getEventos,
+  reconcileEventosAutomaticos,
+  saveEventos,
+} from "../utils/storage";
 import {
   getDiaSemana,
   formatDateTime,
@@ -24,13 +29,23 @@ const Painel = () => {
 
   useEffect(() => {
     // Carrega apenas eventos ativos para reduzir ruído na tela principal.
-    const eventosAtivos = getEventos().filter((e) => !e.removido);
+    const eventosAtivos = reconcileEventosAutomaticos().filter(
+      (e) => !e.removido,
+    );
     setEventos(eventosAtivos);
   }, []);
 
   const refreshEventosAtivos = useCallback(() => {
-    setEventos(getEventos().filter((e) => !e.removido));
+    setEventos(reconcileEventosAutomaticos().filter((e) => !e.removido));
   }, []);
+
+  useEffect(() => {
+    const intervalId = window.setInterval(refreshEventosAtivos, 30000);
+
+    return () => {
+      window.clearInterval(intervalId);
+    };
+  }, [refreshEventosAtivos]);
 
   /**
    * Abre o formulário em modo de criação.

@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Poppins:wght@300;400;500;600;700&display=swap");
 
 * {
   margin: 0;
@@ -6,74 +6,67 @@
   box-sizing: border-box;
 }
 
+html {
+  font-size: clamp(16px, 0.45vw + 12px, 19px);
+}
+
 :root {
   color-scheme: dark;
-  --blue: #5b9bd5;
-  --blue-2: #6ba3d6;
+  --blue: #2b8ffb;
+  --blue-2: #4aa1ff;
   --red: #d32f2f;
   --red-2: #e53935;
   --green: #2e7d32;
   --green-2: #388e3c;
-  --bg: #0b0f1d;
-  --bg-strong: #101622;
-  --surface: #141822;
-  --surface-2: #1a1a1a;
-  --surface-3: #252525;
-  --surface-4: #141a2a;
-  --surface-5: #101521;
+  --bg: #11151c;
+  --bg-strong: #151a22;
+  --surface: #171c24;
+  --surface-2: #1b2028;
+  --surface-3: #222832;
+  --surface-4: #171c24;
+  --surface-5: #151a22;
   --text: #e0e0e0;
   --text-strong: #ffffff;
   --text-muted: #b0b0b0;
   --text-subtle: #d0d0d0;
-  --border: rgba(91, 155, 213, 0.2);
-  --border-strong: rgba(91, 155, 213, 0.3);
-  --shadow: rgba(0, 0, 0, 0.35);
-  --header-gradient: linear-gradient(135deg, #151c2c 0%, #111726 100%);
-  --table-header-gradient: linear-gradient(135deg, #182033 0%, #141c30 100%);
-  --side-nav-gradient: linear-gradient(
-    180deg,
-    rgba(19, 27, 46, 0.96) 0%,
-    rgba(10, 14, 26, 0.98) 100%
-  );
-  --modal-gradient: linear-gradient(135deg, #151c2b 0%, #121826 100%);
-  --overlay: rgba(10, 12, 18, 0.7);
-  --app-bg:
-    linear-gradient(180deg, rgba(20, 30, 50, 0.35) 0%, transparent 45%),
-    radial-gradient(circle at 20% 30%, rgba(20, 78, 117, 0.16), transparent 45%),
-    #0b0f1d;
+  --border: rgba(43, 143, 251, 0.16);
+  --border-strong: rgba(43, 143, 251, 0.26);
+  --shadow: rgba(0, 0, 0, 0.18);
+  --header-gradient: #151a22;
+  --table-header-gradient: #202630;
+  --side-nav-gradient: #151a22;
+  --modal-gradient: #1b2028;
+  --overlay: rgba(10, 12, 18, 0.62);
+  --app-bg: #11151c;
 }
 
 html[data-theme="light"] {
   color-scheme: light;
-  --bg: #f5f7fb;
+  --bg: #f6f7f9;
   --bg-strong: #ffffff;
   --surface: #ffffff;
-  --surface-2: #f0f3f8;
-  --surface-3: #e6ebf3;
+  --surface-2: #f1f3f5;
+  --surface-3: #e9edf1;
   --surface-4: #ffffff;
   --surface-5: #f6f8fc;
   --text: #1c2333;
   --text-strong: #0f141f;
   --text-muted: #5f6b7a;
   --text-subtle: #2d3648;
-  --border: rgba(91, 155, 213, 0.25);
-  --border-strong: rgba(91, 155, 213, 0.35);
-  --shadow: rgba(15, 23, 42, 0.08);
-  --header-gradient: linear-gradient(135deg, #f5f7fb 0%, #edf2fa 100%);
-  --table-header-gradient: linear-gradient(135deg, #edf3fb 0%, #e4ecf8 100%);
-  --side-nav-gradient: linear-gradient(180deg, #ffffff 0%, #eef2f8 100%);
-  --modal-gradient: linear-gradient(135deg, #ffffff 0%, #f3f6fb 100%);
-  --overlay: rgba(15, 23, 42, 0.4);
-  --app-bg:
-    linear-gradient(180deg, rgba(91, 155, 213, 0.12) 0%, transparent 50%),
-    radial-gradient(circle at 20% 30%, rgba(107, 163, 214, 0.1), transparent 45%),
-    #f5f7fb;
+  --border: rgba(43, 143, 251, 0.22);
+  --border-strong: rgba(43, 143, 251, 0.32);
+  --shadow: rgba(15, 23, 42, 0.05);
+  --header-gradient: #ffffff;
+  --table-header-gradient: #eef1f4;
+  --side-nav-gradient: #ffffff;
+  --modal-gradient: #ffffff;
+  --overlay: rgba(15, 23, 42, 0.34);
+  --app-bg: #f6f7f9;
 }
 
 body {
   font-family:
-    "Calibri Light",
-    "Calibri",
+    "Poppins",
     "Segoe UI",
     "Helvetica Neue",
     Arial,
@@ -83,8 +76,16 @@ body {
   background: var(--app-bg);
   color: var(--text);
   min-height: 100vh;
-  font-size: 1.05rem;
-  font-weight: 300;
+  font-size: 1.1rem;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
 }
 
 code {

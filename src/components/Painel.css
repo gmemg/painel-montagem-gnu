@@ -49,50 +49,39 @@
 .btn-adicionar {
   background-color: var(--blue);
   color: white;
-  border: 1px solid rgba(91, 155, 213, 0.6);
+  border: 1px solid rgba(43, 143, 251, 0.5);
   padding: 0.75rem 1.5rem;
-  border-radius: 8px;
+  border-radius: 6px;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition:
-    transform 0.2s,
-    box-shadow 0.2s,
-    background 0.2s;
-  box-shadow: 0 1px 4px rgba(7, 18, 38, 0.25);
+  transition: background 0.2s;
 }
 
 .btn-adicionar:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(7, 18, 38, 0.25);
   background-color: var(--blue-2);
 }
 
 .btn-teste {
-  background: rgba(91, 155, 213, 0.1);
+  background: rgba(43, 143, 251, 0.1);
   color: var(--text);
-  border: 1px solid rgba(91, 155, 213, 0.45);
+  border: 1px solid rgba(43, 143, 251, 0.45);
   padding: 0.75rem 1.2rem;
-  border-radius: 8px;
+  border-radius: 6px;
   font-size: 0.95rem;
   font-weight: 600;
   cursor: pointer;
-  transition:
-    transform 0.2s,
-    box-shadow 0.2s,
-    background 0.2s;
+  transition: background 0.2s;
 }
 
 .btn-teste:hover {
-  transform: translateY(-1px);
-  background: rgba(91, 155, 213, 0.18);
-  box-shadow: 0 4px 10px rgba(7, 18, 38, 0.2);
+  background: rgba(43, 143, 251, 0.18);
 }
 
 .tabela-container {
   background: var(--surface-2);
-  border-radius: 12px;
-  box-shadow: 0 4px 20px var(--shadow);
+  border-radius: 6px;
+  box-shadow: 0 1px 8px var(--shadow);
   border: 1px solid var(--border);
   overflow: hidden;
   overflow-x: auto;
@@ -169,7 +158,7 @@
   text-align: center;
   padding: 3rem !important;
   color: var(--text-muted);
-  font-style: italic;
+  font-style: normal;
 }
 
 .acoes-buttons {
@@ -178,66 +167,42 @@
 }
 
 .btn-editar,
-.btn-remover {
-  padding: 0.5rem 1rem;
+.btn-remover,
+.btn-concluir {
+  padding: 0.35rem 0.45rem;
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  font-size: 0.85rem;
+  font-size: 1.1rem;
   font-weight: 500;
   transition: all 0.2s;
   white-space: nowrap;
-}
-
-.btn-editar {
-  background-color: var(--blue);
-  color: white;
-  border: 1px solid rgba(91, 155, 213, 0.6);
-  box-shadow: 0 1px 4px rgba(7, 18, 38, 0.25);
+  background: transparent;
+  box-shadow: none;
 }
 
 .btn-editar:hover {
-  background-color: var(--blue-2);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 10px rgba(7, 18, 38, 0.25);
+  background: rgba(43, 143, 251, 0.12);
 }
 
 .btn-remover {
-  background-color: var(--red);
-  color: white;
-  border: 1px solid rgba(211, 47, 47, 0.6);
-  box-shadow: 0 1px 4px rgba(7, 18, 38, 0.25);
+  color: inherit;
 }
 
 .btn-remover:hover {
-  background-color: var(--red-2);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 10px rgba(7, 18, 38, 0.25);
+  background: rgba(211, 47, 47, 0.12);
 }
 
 .btn-concluir {
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 0.85rem;
-  font-weight: 500;
-  transition: all 0.2s;
-  white-space: nowrap;
-  background-color: var(--green);
-  color: white;
-  border: 1px solid rgba(46, 125, 50, 0.6);
-  box-shadow: 0 1px 4px rgba(7, 18, 38, 0.25);
+  color: inherit;
 }
 
 .btn-concluir:hover:not(:disabled) {
-  background-color: var(--green-2);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 10px rgba(7, 18, 38, 0.25);
+  background: rgba(46, 125, 50, 0.12);
 }
 
 .btn-concluir:disabled {
-  opacity: 0.7;
+  opacity: 0.45;
   cursor: default;
   box-shadow: none;
 }
@@ -246,7 +211,6 @@
   position: fixed;
   inset: 0;
   background: var(--overlay);
-  backdrop-filter: blur(6px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -258,10 +222,8 @@
   width: min(520px, 95vw);
   background: var(--modal-gradient);
   border: 1px solid var(--border);
-  border-radius: 14px;
-  box-shadow:
-    0 20px 60px var(--shadow),
-    0 0 0 1px rgba(91, 155, 213, 0.05);
+  border-radius: 8px;
+  box-shadow: 0 8px 28px var(--shadow);
   overflow: hidden;
   animation: popupFadeIn 0.18s ease-out;
 }
@@ -296,62 +258,54 @@
 
 .popup-btn {
   padding: 0.6rem 1.1rem;
-  border-radius: 8px;
+  border-radius: 6px;
   font-size: 0.9rem;
   font-weight: 600;
   border: none;
   cursor: pointer;
   transition:
-    transform 0.2s,
-    box-shadow 0.2s,
     background 0.2s,
     color 0.2s;
 }
 
 .popup-btn-cancelar {
-  background: rgba(91, 155, 213, 0.12);
+  background: rgba(43, 143, 251, 0.12);
   color: var(--text);
-  border: 1px solid rgba(91, 155, 213, 0.45);
+  border: 1px solid rgba(43, 143, 251, 0.45);
 }
 
 .popup-btn-cancelar:hover {
-  background: rgba(91, 155, 213, 0.2);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(91, 155, 213, 0.25);
+  background: rgba(43, 143, 251, 0.2);
 }
 
 .popup-btn-remover {
   background: var(--red);
   color: white;
   border: 1px solid rgba(211, 47, 47, 0.6);
-  box-shadow: 0 2px 8px rgba(7, 18, 38, 0.2);
 }
 
 .popup-btn-remover:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 6px 16px rgba(211, 47, 47, 0.5);
+  background: var(--red-2);
 }
 
 html[data-theme="light"] .btn-teste {
-  background: rgba(91, 155, 213, 0.18);
+  background: rgba(43, 143, 251, 0.18);
   color: #1c2333;
-  border-color: rgba(91, 155, 213, 0.55);
+  border-color: rgba(43, 143, 251, 0.55);
 }
 
 html[data-theme="light"] .btn-teste:hover {
-  background: rgba(91, 155, 213, 0.26);
-  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.15);
+  background: rgba(43, 143, 251, 0.26);
 }
 
 html[data-theme="light"] .popup-btn-cancelar {
-  background: rgba(91, 155, 213, 0.18);
+  background: rgba(43, 143, 251, 0.18);
   color: #1c2333;
-  border-color: rgba(91, 155, 213, 0.55);
+  border-color: rgba(43, 143, 251, 0.55);
 }
 
 html[data-theme="light"] .popup-btn-cancelar:hover {
-  background: rgba(91, 155, 213, 0.28);
-  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.12);
+  background: rgba(43, 143, 251, 0.28);
 }
 
 @keyframes popupFadeIn {

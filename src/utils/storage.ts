@@ -58,12 +58,60 @@ export const saveHistorico = (eventos: Evento[]): void => {
  */
 export const addToHistorico = (evento: Evento): void => {
   const historico = getHistorico();
-  // Verificar se o evento ja existe no historico para evitar duplicatas
-  const eventoExiste = historico.some((e) => e.id === evento.id);
-  if (!eventoExiste) {
+  const indiceExistente = historico.findIndex((e) => e.id === evento.id);
+
+  if (indiceExistente >= 0) {
+    historico[indiceExistente] = evento;
+  } else {
     historico.push(evento);
-    saveHistorico(historico);
   }
+
+  saveHistorico(historico);
+};
+
+/**
+ * Move automaticamente para concluído qualquer evento cuja data/hora já chegou.
+ * A regra é aplicada de forma idempotente para poder rodar em toda recarga
+ * ou sincronização periódica sem gerar duplicatas no histórico.
+ *
+ * @returns Lista atualizada de eventos após a reconciliação automática.
+ * @sideEffects Atualiza eventos e histórico no `localStorage` quando necessário.
+ */
+export const reconcileEventosAutomaticos = (): Evento[] => {
+  const agora = Date.now();
+  const eventos = getEventos();
+  let houveMudanca = false;
+
+  const eventosAtualizados = eventos.map((evento) => {
+    if (evento.removido || evento.concluido) {
+      return evento;
+    }
+
+    if (new Date(evento.dataHora).getTime() > agora) {
+      return evento;
+    }
+
+    houveMudanca = true;
+
+    return {
+      ...evento,
+      concluido: true,
+      removido: true,
+      dataConclusao: evento.dataConclusao || new Date().toISOString(),
+      dataRemocao: evento.dataRemocao || new Date().toISOString(),
+    };
+  });
+
+  if (!houveMudanca) {
+    return eventos;
+  }
+
+  saveEventos(eventosAtualizados);
+  eventosAtualizados
+    .filter((evento) => evento.concluido && evento.removido)
+    .forEach(addToHistorico);
+
+  return eventosAtualizados;
 };
 
 /**

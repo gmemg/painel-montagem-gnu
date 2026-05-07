@@ -5,6 +5,7 @@ import {
   getHistorico,
   getHistoricoRemovidosCount,
   incrementHistoricoRemovidosCount,
+  reconcileEventosAutomaticos,
   saveEventos,
   saveHistorico,
 } from "../utils/storage";
@@ -12,8 +13,8 @@ import { getDiaSemana, formatDateTime } from "../utils/dateUtils";
 import "./Historico.css";
 
 /**
- * Tela de histórico: consolida eventos removidos/concluídos e ativos.
- * O objetivo é oferecer rastreabilidade mesmo após exclusões lógicas.
+ * Tela de histórico: exibe apenas eventos removidos ou concluídos.
+ * O objetivo é oferecer rastreabilidade sem misturar itens ainda ativos.
  */
 const Historico = () => {
   const [montagensRemovidas, setMontagensRemovidas] = useState(0);
@@ -24,31 +25,26 @@ const Historico = () => {
   );
 
   /**
-   * Recarrega e reconcilia fontes de dados do histórico e eventos atuais.
+   * Recarrega e reconcilia dados do histórico.
    * A união por `id` evita duplicidade quando um evento está em mais de um lugar.
    */
   const carregarDados = useCallback(() => {
+    reconcileEventosAutomaticos();
     const historico = getHistorico();
     const eventosAtuais = getEventos();
-    const eventosRemovidosAtuais = eventosAtuais.filter((e) => e.removido);
+    const eventosFinalizados = eventosAtuais.filter(
+      (e) => e.removido || e.concluido,
+    );
 
     const eventosUnicos = new Map<string, Evento>();
 
-    eventosRemovidosAtuais.forEach((evento) => {
+    eventosFinalizados.forEach((evento) => {
       eventosUnicos.set(evento.id, evento);
     });
 
     historico.forEach((evento) => {
       eventosUnicos.set(evento.id, evento);
     });
-
-    eventosAtuais
-      .filter((e) => !e.removido)
-      .forEach((evento) => {
-        if (!eventosUnicos.has(evento.id)) {
-          eventosUnicos.set(evento.id, evento);
-        }
-      });
 
     const todosEventosArray = Array.from(eventosUnicos.values()).sort(
       // Ordena do mais recente para o mais antigo para facilitar leitura.
@@ -63,6 +59,14 @@ const Historico = () => {
   useEffect(() => {
     // Carregamento inicial para evitar render vazio com estado incompleto.
     carregarDados();
+  }, [carregarDados]);
+
+  useEffect(() => {
+    const intervalId = window.setInterval(carregarDados, 30000);
+
+    return () => {
+      window.clearInterval(intervalId);
+    };
   }, [carregarDados]);
 
   /**

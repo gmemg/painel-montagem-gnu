@@ -12,6 +12,7 @@ import "./App.css";
  */
 function App() {
   const [tema, setTema] = useState<"dark" | "light">("dark");
+  const [menuAberto, setMenuAberto] = useState(true);
 
   useEffect(() => {
     const salvo = localStorage.getItem("tema_app");
@@ -31,6 +32,21 @@ function App() {
       <div className="app">
         <header className="app-header">
           <div className="header-content">
+            <button
+              type="button"
+              className="nav-toggle"
+              onClick={() => setMenuAberto((prev) => !prev)}
+              aria-label={menuAberto ? "Recolher menu lateral" : "Abrir menu lateral"}
+              aria-expanded={menuAberto}
+              aria-controls="side-nav"
+              title={menuAberto ? "Recolher menu lateral" : "Abrir menu lateral"}
+            >
+              <span className="nav-toggle-icon" aria-hidden="true">
+                <span />
+                <span />
+                <span />
+              </span>
+            </button>
             <img
               className="header-logo"
               src="https://www.gnu.com.br/site/img/logo-gnu.svg"
@@ -63,8 +79,11 @@ function App() {
             </div>
           </div>
         </header>
-        <div className="app-body">
-          <aside className="side-nav">
+        <div className={`app-body${menuAberto ? " nav-open" : ""}`}>
+          <aside
+            id="side-nav"
+            className={`side-nav${menuAberto ? " is-open" : ""}`}
+          >
             <div className="side-nav-inner">
               <div className="side-nav-title">Navegação</div>
               <nav className="side-nav-links">

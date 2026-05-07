@@ -6,44 +6,39 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 1.5rem;
-  margin-bottom: 2rem;
+  gap: 1rem;
+  margin-bottom: 1rem;
   flex-wrap: wrap;
 }
 
 .inventario-title {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.3rem;
 }
 
 .inventario-header h2 {
   color: var(--text);
-  font-size: 3rem;
-  margin-bottom: 1rem;
+  font-size: 2.1rem;
+  margin-bottom: 0.35rem;
   font-weight: 600;
-}
-
-.inventario-stat {
-  color: var(--text-muted);
-  font-size: 1rem;
-}
-
-.inventario-stat strong {
-  color: var(--blue);
-  font-size: 1.1rem;
+  line-height: 1.05;
 }
 
 .inventario-stats {
   display: flex;
-  gap: 2rem;
+  gap: 1rem;
   flex-wrap: wrap;
 }
 
-.inventario-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+.inventario-stat {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+}
+
+.inventario-stat strong {
+  color: var(--blue);
+  font-size: 1rem;
 }
 
 .inventario-actions {
@@ -51,33 +46,178 @@
   justify-content: flex-end;
 }
 
-.btn-add-item {
-  background-color: var(--blue);
+.inventario-toolbar {
+  display: grid;
+  grid-template-columns: minmax(0, 1.8fr) minmax(220px, 0.8fr);
+  gap: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.inventario-toolbar-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.inventario-toolbar-field label {
+  color: var(--text-muted);
+  font-size: 0.84rem;
+  font-weight: 600;
+}
+
+.inventario-toolbar-field input,
+.inventario-toolbar-field select,
+.inventario-form-field input,
+.inventario-item-edit-input,
+.input-cell input,
+.status-select {
+  width: 100%;
+  background: var(--bg-strong);
+  color: var(--text);
+  border: 1px solid var(--border-strong);
+  border-radius: 6px;
+  padding: 0.6rem 0.8rem;
+  font-size: 0.94rem;
+  font-weight: 500;
+  transition:
+    border-color 0.2s,
+    background 0.2s;
+}
+
+.inventario-toolbar-field input:focus,
+.inventario-toolbar-field select:focus,
+.inventario-form-field input:focus,
+.inventario-item-edit-input:focus,
+.input-cell input:focus,
+.status-select:focus {
+  outline: none;
+  border-color: var(--blue);
+  box-shadow: 0 0 0 2px rgba(43, 143, 251, 0.16);
+}
+
+.inventario-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.9rem;
+  align-items: start;
+}
+
+.btn-add-item,
+.btn-salvar-item,
+.btn-remover-item-confirmar,
+.btn-salvar-edicao-item {
+  background: var(--blue);
   color: white;
-  border: 1px solid rgba(91, 155, 213, 0.6);
-  padding: 0.7rem 1.3rem;
-  border-radius: 8px;
-  font-size: 0.95rem;
+  border: 1px solid rgba(43, 143, 251, 0.5);
+}
+
+.btn-add-item,
+.btn-cancelar-item,
+.btn-salvar-item,
+.btn-remover-item-confirmar,
+.btn-editar-item,
+.btn-drag-item,
+.btn-salvar-edicao-item,
+.btn-cancelar-edicao-item,
+.btn-add-unit-header,
+.btn-remover-item,
+.btn-remover-unidade,
+.btn-historico-unidade,
+.inventario-toast button {
+  padding: 0.55rem 0.9rem;
+  border-radius: 6px;
+  font-size: 0.84rem;
   font-weight: 600;
   cursor: pointer;
   transition:
-    transform 0.2s,
-    box-shadow 0.2s,
-    background 0.2s;
-  box-shadow: 0 1px 4px rgba(7, 18, 38, 0.25);
+    background 0.2s,
+    border-color 0.2s,
+    opacity 0.2s;
 }
 
-.btn-add-item:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 10px rgba(7, 18, 38, 0.25);
-  background-color: var(--blue-2);
+.btn-add-item:hover,
+.btn-cancelar-item:hover,
+.btn-salvar-item:hover,
+.btn-remover-item-confirmar:hover,
+.btn-editar-item:hover,
+.btn-drag-item:hover,
+.btn-salvar-edicao-item:hover,
+.btn-cancelar-edicao-item:hover,
+.btn-add-unit-header:hover,
+.btn-remover-item:hover,
+.btn-remover-unidade:hover,
+.btn-historico-unidade:hover,
+.inventario-toast button:hover {
+  background: rgba(43, 143, 251, 0.16);
+}
+
+.btn-add-item:hover,
+.btn-salvar-item:hover,
+.btn-salvar-edicao-item:hover {
+  background: var(--blue-2);
+}
+
+.btn-cancelar-item,
+.btn-editar-item,
+.btn-cancelar-edicao-item,
+.btn-drag-item,
+.btn-add-unit-header,
+.btn-historico-unidade {
+  background: rgba(43, 143, 251, 0.12);
+  color: var(--text);
+  border: 1px solid rgba(43, 143, 251, 0.45);
+}
+
+.btn-cancelar-item:hover,
+.btn-editar-item:hover,
+.btn-cancelar-edicao-item:hover,
+.btn-drag-item:hover,
+.btn-add-unit-header:hover,
+.btn-historico-unidade:hover {
+  background: rgba(43, 143, 251, 0.2);
+}
+
+.btn-remover-item-confirmar,
+.btn-remover-unidade {
+  background: var(--red);
+  color: white;
+  border: 1px solid rgba(211, 47, 47, 0.6);
+}
+
+.btn-remover-item {
+  background: rgba(211, 47, 47, 0.12);
+  color: var(--text);
+  border: 1px solid rgba(211, 47, 47, 0.45);
+}
+
+.btn-remover-item:hover {
+  background: rgba(211, 47, 47, 0.2);
+}
+
+.btn-remover-unidade:hover,
+.btn-remover-item-confirmar:hover {
+  background: var(--red-2);
+}
+
+.btn-drag-item {
+  min-width: 2.8rem;
+  cursor: grab;
+}
+
+.btn-drag-item:active {
+  cursor: grabbing;
+}
+
+.btn-drag-item.is-disabled,
+.btn-drag-item:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
 }
 
 .inventario-modal-overlay {
   position: fixed;
   inset: 0;
   background: var(--overlay);
-  backdrop-filter: blur(6px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -86,30 +226,32 @@
 }
 
 .inventario-modal {
-  width: min(520px, 95vw);
+  width: min(560px, 96vw);
   background: var(--modal-gradient);
   border: 1px solid var(--border);
-  border-radius: 14px;
-  box-shadow:
-    0 20px 60px var(--shadow),
-    0 0 0 1px rgba(91, 155, 213, 0.05);
+  border-radius: 8px;
+  box-shadow: 0 8px 28px var(--shadow);
   overflow: hidden;
   animation: inventarioModalIn 0.2s ease-out;
 }
 
+.inventario-history-modal {
+  width: min(680px, 96vw);
+}
+
 .inventario-modal-header {
-  padding: 1.25rem 1.5rem 0.75rem;
+  padding: 1.2rem 1.4rem 0.85rem;
   border-bottom: 1px solid var(--border);
 }
 
 .inventario-modal-header h3 {
   color: var(--text-strong);
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   font-weight: 600;
 }
 
 .inventario-form {
-  padding: 1rem 1.5rem 1.5rem;
+  padding: 1rem 1.4rem 1.4rem;
   display: flex;
   flex-wrap: wrap;
   gap: 1rem 1.5rem;
@@ -130,41 +272,15 @@
   font-weight: 600;
 }
 
-.inventario-form-field input {
-  width: 100%;
-  background: var(--bg-strong);
-  color: var(--text);
-  border: 1px solid var(--border-strong);
-  border-radius: 8px;
-  padding: 0.6rem 0.8rem;
-  font-size: 0.95rem;
-  font-weight: 500;
-  transition:
-    border-color 0.2s,
-    box-shadow 0.2s,
-    background 0.2s;
-}
-
-.inventario-form-field input::placeholder {
-  color: var(--text-muted);
-}
-
-.inventario-form-field input:focus {
-  outline: none;
-  border-color: var(--blue);
-  box-shadow: 0 0 0 2px rgba(91, 155, 213, 0.25);
-  background: var(--bg-strong);
-}
-
 .inventario-form-actions {
   display: flex;
   gap: 0.75rem;
   justify-content: center;
-  padding: 1.25rem 1.5rem 1.5rem;
+  padding: 1.15rem 1.4rem 1.4rem;
 }
 
 .inventario-modal-body {
-  padding: 1rem 1.5rem 0;
+  padding: 1rem 1.4rem 0;
   color: var(--text-subtle);
   line-height: 1.5;
 }
@@ -173,86 +289,88 @@
   color: var(--text-strong);
 }
 
-.btn-cancelar-item {
-  background: rgba(91, 155, 213, 0.12);
+.inventario-history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  padding: 1rem 1.4rem 0;
+  max-height: 50vh;
+  overflow: auto;
+}
+
+.inventario-history-entry {
+  display: grid;
+  gap: 0.2rem;
+  padding: 0.8rem 0.9rem;
+  border-radius: 6px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+}
+
+.inventario-history-date {
+  color: var(--text-muted);
+  font-size: 0.76rem;
+  text-transform: uppercase;
+}
+
+.inventario-history-description {
   color: var(--text);
-  border: 1px solid rgba(91, 155, 213, 0.45);
-  padding: 0.65rem 1.2rem;
-  border-radius: 8px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition:
-    transform 0.2s,
-    box-shadow 0.2s,
-    background 0.2s;
+  line-height: 1.45;
 }
 
-.btn-cancelar-item:hover {
-  transform: translateY(-1px);
-  background: rgba(91, 155, 213, 0.2);
-  box-shadow: 0 4px 10px rgba(7, 18, 38, 0.2);
-}
-
-.btn-salvar-item {
-  background: var(--blue);
+.inventario-toast {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 1300;
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  max-width: min(420px, calc(100vw - 2rem));
+  padding: 0.9rem 1rem;
+  background: rgba(15, 23, 42, 0.96);
   color: white;
-  border: 1px solid rgba(91, 155, 213, 0.6);
-  padding: 0.65rem 1.4rem;
   border-radius: 8px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition:
-    transform 0.2s,
-    box-shadow 0.2s,
-    background 0.2s;
-  box-shadow: 0 1px 4px rgba(7, 18, 38, 0.25);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
 }
 
-.btn-salvar-item:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 10px rgba(7, 18, 38, 0.25);
-  background: var(--blue-2);
-}
-
-.btn-remover-item-confirmar {
-  background: var(--red);
-  color: white;
-  border: 1px solid rgba(211, 47, 47, 0.6);
-  padding: 0.65rem 1.4rem;
-  border-radius: 8px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition:
-    transform 0.2s,
-    box-shadow 0.2s,
-    background 0.2s;
-  box-shadow: 0 1px 4px rgba(7, 18, 38, 0.25);
-}
-
-.btn-remover-item-confirmar:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 10px rgba(7, 18, 38, 0.25);
+.inventario-toast button {
+  background: white;
+  color: #13203a;
+  border: none;
+  padding: 0.45rem 0.75rem;
 }
 
 .inventario-card {
   background: var(--surface);
-  border-radius: 16px;
+  border-radius: 8px;
   border: 1px solid var(--border);
-  box-shadow: 0 12px 24px var(--shadow);
+  box-shadow: 0 1px 8px var(--shadow);
   overflow: hidden;
+  transition:
+    border-color 0.18s ease,
+    opacity 0.18s ease;
+}
+
+.inventario-card.is-dragging {
+  opacity: 0.55;
+  transform: scale(0.985);
+}
+
+.inventario-card.is-drag-over {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 2px rgba(43, 143, 251, 0.14);
 }
 
 .inventario-card-header {
   width: 100%;
   background: var(--table-header-gradient);
   color: var(--text);
-  padding: 1.25rem 1.5rem;
+  padding: 0.85rem 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 1rem;
   text-align: left;
   cursor: pointer;
 }
@@ -260,100 +378,97 @@
 .inventario-card-title {
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
+  gap: 0.35rem;
+  min-width: 0;
 }
 
 .inventario-item-name {
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 600;
+  line-height: 1.1;
+  overflow-wrap: anywhere;
+}
+
+.inventario-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  align-items: center;
+  min-height: 1.9rem;
 }
 
 .inventario-item-count {
-  font-size: 0.9rem;
+  font-size: 0.78rem;
   color: var(--text-muted);
   letter-spacing: 0.04rem;
   text-transform: uppercase;
 }
 
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 1.9rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.status-disponivel {
+  background: rgba(34, 197, 94, 0.16);
+  color: #1e8f4b;
+}
+
+.status-em_uso {
+  background: rgba(59, 130, 246, 0.16);
+  color: #2b71da;
+}
+
+.status-manutencao {
+  background: rgba(245, 158, 11, 0.16);
+  color: #c77f00;
+}
+
+.status-reservado {
+  background: rgba(168, 85, 247, 0.16);
+  color: #8c49da;
+}
+
 .inventario-card-buttons {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
-.btn-add-unit-header {
-  background: rgba(91, 155, 213, 0.14);
-  color: var(--text);
-  border: 1px solid rgba(91, 155, 213, 0.55);
-  padding: 0.45rem 0.75rem;
-  border-radius: 8px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition:
-    transform 0.2s,
-    background 0.2s,
-    box-shadow 0.2s;
+.inventario-item-edit {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
 }
 
-.btn-add-unit-header:hover {
-  transform: translateY(-1px);
-  background: rgba(91, 155, 213, 0.24);
-  box-shadow: 0 4px 10px rgba(7, 18, 38, 0.2);
+.inventario-item-edit-input {
+  width: min(340px, 100%);
 }
 
-.btn-toggle {
-  border: 1px solid rgba(91, 155, 213, 0.4);
-  background: rgba(91, 155, 213, 0.16);
-  color: var(--text);
-  border-radius: 8px;
-  padding: 0.3rem 0.7rem;
-  font-size: 1.1rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition:
-    transform 0.2s,
-    background 0.2s,
-    box-shadow 0.2s;
-}
-
-.btn-toggle:hover {
-  transform: translateY(-1px);
-  background: rgba(91, 155, 213, 0.26);
-  box-shadow: 0 4px 10px rgba(7, 18, 38, 0.2);
-}
-
-.btn-remover-item {
-  background: rgba(211, 47, 47, 0.12);
-  color: var(--text);
-  border: 1px solid rgba(211, 47, 47, 0.5);
-  padding: 0.5rem 0.9rem;
-  border-radius: 8px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition:
-    transform 0.2s,
-    background 0.2s,
-    box-shadow 0.2s;
-}
-
-.btn-remover-item:hover {
-  transform: translateY(-1px);
-  background: rgba(211, 47, 47, 0.22);
-  box-shadow: 0 4px 10px rgba(7, 18, 38, 0.2);
+.inventario-item-edit-actions {
+  display: flex;
+  gap: 0.45rem;
+  flex-wrap: wrap;
 }
 
 .inventario-card-body {
-  padding: 1.25rem 1.5rem 1.5rem;
-  max-height: 2000px;
+  padding: 0.85rem 1rem 1rem;
+  max-height: 2600px;
   opacity: 1;
   overflow: hidden;
   transition:
     max-height 0.32s cubic-bezier(0.4, 0, 0.2, 1),
     opacity 0.28s cubic-bezier(0.4, 0, 0.2, 1),
     padding 0.28s cubic-bezier(0.4, 0, 0.2, 1);
-  will-change: max-height, opacity;
 }
 
 .inventario-card-body.is-closed {
@@ -366,8 +481,8 @@
 
 .tabela-container {
   background: var(--surface-2);
-  border-radius: 12px;
-  box-shadow: 0 4px 20px var(--shadow);
+  border-radius: 6px;
+  box-shadow: 0 1px 8px var(--shadow);
   border: 1px solid var(--border);
   overflow: hidden;
   overflow-x: auto;
@@ -376,7 +491,7 @@
 .tabela-unidades {
   width: 100%;
   border-collapse: collapse;
-  min-width: 900px;
+  min-width: 1080px;
 }
 
 .tabela-unidades thead {
@@ -386,20 +501,20 @@
 }
 
 .tabela-unidades th {
-  padding: 1rem;
+  padding: 0.75rem 0.8rem;
   text-align: left;
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 0.82rem;
 }
 
 .tabela-unidades tbody tr {
   border-bottom: 1px solid var(--border);
   transition: background-color 0.2s;
-  background-color: var(--surface-2);
+  background: var(--surface-2);
 }
 
 .tabela-unidades tbody tr:hover {
-  background-color: var(--surface-3);
+  background: var(--surface-3);
 }
 
 .tabela-unidades tbody tr:last-child {
@@ -407,11 +522,29 @@
 }
 
 .tabela-unidades td {
-  padding: 0.9rem 1rem;
+  padding: 0.6rem 0.65rem;
   color: var(--text-subtle);
-  font-size: 0.9rem;
+  font-size: 0.82rem;
   font-weight: 600;
-  text-transform: uppercase;
+  vertical-align: top;
+}
+
+.status-cell {
+  min-width: 180px;
+}
+
+.status-cell,
+.updated-cell {
+  text-transform: none;
+}
+
+.status-cell .status-badge {
+  margin-bottom: 0.5rem;
+}
+
+.status-select {
+  min-width: 160px;
+  padding-right: 2rem;
 }
 
 .input-cell {
@@ -419,113 +552,63 @@
 }
 
 .input-cell input {
-  width: 100%;
-  min-width: 140px;
-  background: var(--bg-strong);
-  color: var(--text);
-  border: 1px solid var(--border-strong);
-  border-radius: 8px;
-  padding: 0.45rem 0.6rem;
-  font-size: 0.9rem;
-  font-weight: 500;
-  transition:
-    border-color 0.2s,
-    box-shadow 0.2s,
-    background 0.2s;
+  min-width: 130px;
+  padding: 0.42rem 0.55rem;
+  font-size: 0.82rem;
 }
 
-.input-cell input::placeholder {
+.updated-cell {
   color: var(--text-muted);
-}
-
-.input-cell input:focus {
-  outline: none;
-  border-color: var(--blue);
-  box-shadow: 0 0 0 2px rgba(91, 155, 213, 0.25);
-  background: var(--bg-strong);
+  min-width: 115px;
 }
 
 .acoes-cell {
   white-space: nowrap;
-}
-
-.btn-remover-unidade {
-  background-color: var(--red);
-  color: white;
-  border: 1px solid rgba(211, 47, 47, 0.6);
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 0.85rem;
-  font-weight: 500;
-  transition:
-    transform 0.2s,
-    box-shadow 0.2s,
-    background 0.2s;
-}
-
-.btn-remover-unidade:hover {
-  background-color: var(--red-2);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 10px rgba(7, 18, 38, 0.25);
-}
-
-html[data-theme="light"] .btn-cancelar-item {
-  background: rgba(91, 155, 213, 0.18);
-  color: #1c2333;
-  border-color: rgba(91, 155, 213, 0.55);
-}
-
-html[data-theme="light"] .btn-cancelar-item:hover {
-  background: rgba(91, 155, 213, 0.28);
-  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.12);
-}
-
-html[data-theme="light"] .btn-add-unit-header {
-  background: rgba(91, 155, 213, 0.2);
-  color: #1c2333;
-  border-color: rgba(91, 155, 213, 0.55);
-}
-
-html[data-theme="light"] .btn-add-unit-header:hover {
-  background: rgba(91, 155, 213, 0.3);
-}
-
-html[data-theme="light"] .btn-toggle {
-  background: rgba(91, 155, 213, 0.2);
-  border-color: rgba(91, 155, 213, 0.5);
-}
-
-html[data-theme="light"] .btn-toggle:hover {
-  background: rgba(91, 155, 213, 0.3);
-}
-
-html[data-theme="light"] .btn-remover-item {
-  background: rgba(211, 47, 47, 0.16);
-  color: #7a1f1f;
-  border-color: rgba(211, 47, 47, 0.5);
-}
-
-html[data-theme="light"] .btn-remover-item:hover {
-  background: rgba(211, 47, 47, 0.26);
-  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.12);
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  flex-wrap: wrap;
 }
 
 .empty-state {
   text-align: center;
   padding: 2.5rem !important;
   color: var(--text-muted);
-  font-style: italic;
+}
+
+html[data-theme="light"] .btn-cancelar-item,
+html[data-theme="light"] .btn-editar-item,
+html[data-theme="light"] .btn-cancelar-edicao-item,
+html[data-theme="light"] .btn-drag-item,
+html[data-theme="light"] .btn-add-unit-header,
+html[data-theme="light"] .btn-historico-unidade {
+  background: rgba(43, 143, 251, 0.18);
+  color: #1c2333;
+}
+
+html[data-theme="light"] .btn-remover-item {
+  color: #7a1f1f;
+}
+
+@media (min-width: 1100px) {
+  .inventario-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 920px) {
+  .inventario-toolbar {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 768px) {
   .inventario-header h2 {
-    font-size: 2.2rem;
+    font-size: 1.8rem;
   }
 
   .inventario-stats {
-    flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.55rem 1rem;
   }
 
   .inventario-form {
@@ -535,6 +618,7 @@ html[data-theme="light"] .btn-remover-item:hover {
 
   .inventario-form-actions {
     width: 100%;
+    flex-direction: column;
   }
 
   .btn-cancelar-item,
@@ -543,88 +627,114 @@ html[data-theme="light"] .btn-remover-item:hover {
     width: 100%;
   }
 
-  .inventario-card-buttons {
-    flex-direction: column-reverse;
-    align-items: flex-end;
-  }
-
-  .inventario-card-header {
-    padding: 1rem 1.25rem;
-  }
-
-  .inventario-card-body {
-    padding: 1rem 1.25rem 1.5rem;
-  }
-
-  .tabela-unidades {
-    min-width: 780px;
-  }
-}
-
-@media (max-width: 640px) {
-  .inventario-header {
-    gap: 1rem;
-  }
-
-  .inventario-header h2 {
-    font-size: 2rem;
-  }
-
-  .inventario-stats {
-    gap: 0.75rem;
-  }
-
   .inventario-card-header {
     flex-direction: column;
-    align-items: flex-start;
-    gap: 0.8rem;
+    align-items: stretch;
   }
 
   .inventario-card-buttons {
+    justify-content: flex-start;
+  }
+
+  .inventario-toast {
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+    max-width: none;
+  }
+
+  .tabela-unidades,
+  .tabela-unidades thead,
+  .tabela-unidades tbody,
+  .tabela-unidades tr,
+  .tabela-unidades th,
+  .tabela-unidades td {
+    display: block;
     width: 100%;
-    justify-content: flex-end;
   }
 
   .tabela-unidades {
-    min-width: 700px;
+    min-width: 0;
   }
 
-  .tabela-unidades th,
+  .tabela-unidades thead {
+    display: none;
+  }
+
+  .tabela-unidades tbody {
+    display: grid;
+    gap: 0.8rem;
+    padding: 0.8rem;
+  }
+
+  .tabela-unidades tbody tr {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--surface);
+  }
+
   .tabela-unidades td {
-    padding: 0.8rem 0.75rem;
-    font-size: 0.85rem;
+    display: grid;
+    gap: 0.45rem;
+    padding: 0.7rem 0.8rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .tabela-unidades td:last-child {
+    border-bottom: none;
+  }
+
+  .tabela-unidades td::before {
+    content: attr(data-label);
+    color: var(--text-muted);
+    font-size: 0.76rem;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .status-cell {
+    min-width: 0;
+  }
+
+  .status-select,
+  .input-cell input {
+    min-width: 0;
+  }
+
+  .updated-cell {
+    min-width: 0;
+  }
+
+  .acoes-cell {
+    white-space: normal;
   }
 }
 
 @media (max-width: 480px) {
   .inventario-header h2 {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
   }
 
   .inventario-item-name {
-    font-size: 1.05rem;
+    font-size: 0.95rem;
   }
 
   .inventario-card-buttons {
-    flex-direction: column-reverse;
-    align-items: flex-end;
-    gap: 0.5rem;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .btn-add-item,
-  .btn-add-unit-header,
-  .btn-remover-item {
-    font-size: 0.8rem;
+  .inventario-card-buttons button {
+    width: 100%;
   }
 
-  .tabela-unidades {
-    min-width: 620px;
+  .inventario-card-body {
+    padding-inline: 0.75rem;
   }
 
-  .tabela-unidades th,
-  .tabela-unidades td {
-    padding: 0.7rem 0.6rem;
-    font-size: 0.82rem;
+  .tabela-unidades tbody {
+    padding: 0.55rem;
   }
 }
 

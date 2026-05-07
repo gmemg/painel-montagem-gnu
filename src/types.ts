@@ -22,6 +22,18 @@ export interface Evento {
 /**
  * Representa um item do inventário de montagem.
  */
+export type InventarioStatus =
+  | "disponivel"
+  | "em_uso"
+  | "manutencao"
+  | "reservado";
+
+export interface InventarioHistoricoEntry {
+  id: string;
+  data: string;
+  descricao: string;
+}
+
 export interface InventarioUnidade {
   id: string;
   modelo: string;
@@ -29,10 +41,14 @@ export interface InventarioUnidade {
   localizacao: string;
   requerente: string;
   montadoPor: string;
+  status: InventarioStatus;
+  historico: InventarioHistoricoEntry[];
+  updatedAt: string;
 }
 
 export interface InventarioItem {
   id: string;
   item: string;
   unidades: InventarioUnidade[];
+  updatedAt: string;
 }
